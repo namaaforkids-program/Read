@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رِواق | لعبة الجمل</title>
+
+<style>
+:root {
+  --cream: #FFEFD2;
+  --teal: #6AB0AF;
+  --coral: #F5A89A;
+  --yellow: #FFF2A5;
+  --pink: #FA699E;
+  --light-pink: #FFE7F0;
+  --green: #4ADD82;
+  --dark: #355B5B;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Tahoma", sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 22px;
+}
+
+.logo {
+  width: 115px;
+  height: auto;
+  object-fit: contain;
+}
+
+main {
+  min-height: 65vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.intro h1 {
+  font-size: clamp(25px, 5vw, 38px);
+  margin: 0 0 10px;
+  color: var(--dark);
+}
+
+.intro p {
+  font-size: 17px;
+  margin: 0;
+  color: #658181;
+}
+
+.decor {
+  position: absolute;
+  border-radius: 50%;
+  opacity: .8;
+  pointer-events: none;
+}
+
+.decor.one {
+  width: 75px;
+  height: 75px;
+  background: var(--pink);
+  top: 12%;
+  right: 9%;
+}
+
+.decor.two {
+  width: 48px;
+  height: 48px;
+  background: var(--green);
+  bottom: 16%;
+  left: 10%;
+}
+
+.decor.three {
+  width: 35px;
+  height: 35px;
+  background: var(--yellow);
+  top: 25%;
+  left: 15%;
+}
+
+.gift-button {
+  width: min(300px, 75vw);
+  aspect-ratio: 1;
+  border: 8px solid white;
+  border-radius: 42px;
+  background: var(--teal);
+  box-shadow: 0 12px 0 #438F8E, 0 20px 30px #00000018;
+  cursor: pointer;
+  position: relative;
+  transition: .25s;
+  animation: float 3s ease-in-out infinite;
+}
+
+.gift-button:hover {
+  transform: translateY(-8px) rotate(-2deg);
+}
+
+.gift-button:active {
+  transform: scale(.95);
+}
+
+.gift-icon {
+  font-size: 105px;
+  display: block;
+  filter: drop-shadow(0 5px 2px #00000015);
+}
+
+.gift-label {
+  display: block;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  margin-top: 8px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.discovered {
+  width: min(900px, 92%);
+  margin: 20px auto 50px;
+  text-align: center;
+}
+
+.discovered h2 {
+  font-size: 22px;
+  margin-bottom: 18px;
+}
+
+.cards-row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.history-card {
+  width: 115px;
+  min-height: 110px;
+  background: white;
+  border: 3px solid var(--light-pink);
+  border-radius: 20px;
+  padding: 12px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.history-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--pink);
+}
+
+.history-card img {
+  width: 65px;
+  height: 55px;
+  object-fit: contain;
+}
+
+.history-card p {
+  font-size: 12px;
+  margin: 6px 0 0;
+}
+
+.empty-message {
+  color: #789090;
+  font-size: 14px;
+}
+
+/* البطاقة التعليمية */
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #24444499;
+  z-index: 10;
+  justify-content: center;
+  align-items: center;
+  padding: 18px;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.learning-card {
+  background: white;
+  width: min(520px, 100%);
+  border-radius: 30px;
+  padding: 25px;
+  text-align: center;
+  position: relative;
+  border: 7px solid var(--yellow);
+  box-shadow: 0 15px 40px #00000025;
+  animation: appear .3s ease;
+}
+
+@keyframes appear {
+  from { transform: scale(.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  left: 15px;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: var(--light-pink);
+  color: var(--dark);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.picture {
+  width: 100%;
+  height: 210px;
+  object-fit: contain;
+  border-radius: 20px;
+  background: #FFF9EF;
+  margin-top: 25px;
+}
+
+.english {
+  direction: ltr;
+  font-size: 25px;
+  font-weight: bold;
+  color: var(--dark);
+  margin: 20px 0 10px;
+}
+
+.arabic {
+  font-size: 19px;
+  color: #789090;
+  margin: 0 0 20px;
+}
+
+.listen {
+  background: var(--pink);
+  color: white;
+  border: none;
+  border-radius: 18px;
+  padding: 13px 25px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 5px 0 #D94D82;
+}
+
+.listen:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+@media (max-width: 500px) {
+  .gift-button {
+    width: 250px;
+  }
+
+  .gift-icon {
+    font-size: 85px;
+  }
+
+  .learning-card {
+    padding: 18px;
+  }
+
+  .picture {
+    height: 170px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <!-- ضعي شعار رِواق في نفس مجلد الملف باسم IMG_3829.png -->
+  <img class="logo" src="IMG_3829.png" alt="شعار رِواق">
+</header>
+
+<main>
+  <div class="decor one"></div>
+  <div class="decor two"></div>
+  <div class="decor three"></div>
+
+  <div class="intro">
+    <h1>يلا نكتشف!</h1>
+    <p>اضغط على الصندوق واكتشف جملة جديدة</p>
+  </div>
+
+  <button class="gift-button" onclick="openRandomCard()">
+    <span class="gift-icon">🎁</span>
+    <span class="gift-label">اضغط واكتشف</span>
+  </button>
+</main>
+
+<section class="discovered">
+  <h2>البطاقات المكتشفة</h2>
+  <div class="cards-row" id="history">
+    <p class="empty-message">البطاقات التي تكتشفها ستظهر هنا</p>
+  </div>
+</section>
+
+<div class="modal" id="modal" onclick="closeOutside(event)">
+  <div class="learning-card">
+    <button class="close" onclick="closeCard()">×</button>
+
+    <img id="cardImage" class="picture" src="" alt="صورة تعليمية">
+
+    <p class="english" id="englishText"></p>
+    <p class="arabic" id="arabicText"></p>
+
+    <button class="listen" onclick="speakSentence()">
+      استمع للجملة
+    </button>
+  </div>
+</div>
+
+<script>
+
+/*
+  أضيفي جملك هنا لاحقًا.
+  image: اسم الصورة الموجودة بجانب ملف HTML.
+  english: الجملة الإنجليزية.
+  arabic: الترجمة العربية.
+*/
+
+const learningCards = [
+  {
+    id: 1,
+    image: "image1.jpeg",
+    english: "The tea is hot.",
+    arabic: "الشاي ساخن."
+  },
+  {
+    id: 2,
+    image: "image2.jpeg",
+    english: "The ice is melting.",
+    arabic: "الثلج يذوب."
+  }
+];
+
+let discovered = [];
+let currentCard = null;
+
+function openRandomCard() {
+  const remaining = learningCards.filter(
+    card => !discovered.includes(card.id)
+  );
+
+  if (remaining.length === 0) {
+    discovered = [];
+    renderHistory();
+  }
+
+  const available = learningCards.filter(
+    card => !discovered.includes(card.id)
+  );
+
+  const card = available[
+    Math.floor(Math.random() * available.length)
+  ];
+
+  showCard(card);
+}
+
+function showCard(card) {
+  currentCard = card;
+
+  document.getElementById("cardImage").src = card.image;
+  document.getElementById("englishText").textContent = card.english;
+  document.getElementById("arabicText").textContent = card.arabic;
+
+  document.getElementById("modal").classList.add("show");
+
+  if (!discovered.includes(card.id)) {
+    discovered.push(card.id);
+    renderHistory();
+  }
+}
+
+function closeCard() {
+  document.getElementById("modal").classList.remove("show");
+  window.speechSynthesis.cancel();
+}
+
+function closeOutside(event) {
+  if (event.target.id === "modal") {
+    closeCard();
+  }
+}
+
+function speakSentence() {
+  if (!currentCard) return;
+
+  window.speechSynthesis.cancel();
+
+  const speech = new SpeechSynthesisUtterance(
+    currentCard.english
+  );
+
+  speech.lang = "en-US";
+  speech.rate = 0.85;
+
+  window.speechSynthesis.speak(speech);
+}
+
+function renderHistory() {
+  const history = document.getElementById("history");
+  history.innerHTML = "";
+
+  if (discovered.length === 0) {
+    history.innerHTML =
+      '<p class="empty-message">البطاقات التي تكتشفها ستظهر هنا</p>';
+    return;
+  }
+
+  discovered.forEach(id => {
+    const card = learningCards.find(item => item.id === id);
+
+    const button = document.createElement("button");
+    button.className = "history-card";
+
+    const img = document.createElement("img");
+    img.src = card.image;
+    img.alt = "";
+
+    const label = document.createElement("p");
+    label.textContent = "بطاقة " + id;
+
+    button.appendChild(img);
+    button.appendChild(label);
+
+    button.onclick = () => showCard(card);
+
+    history.appendChild(button);
+  });
+}
+
+</script>
+
+</body>
+</html>
