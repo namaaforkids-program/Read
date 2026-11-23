@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>اقرا الجمل</title>
+<title>كتاب  نماء - اقرأ وتعلم</title>
 
 <style>
 :root {
@@ -18,57 +18,57 @@
   --dark:#426B6A;
 }
 
-* { box-sizing:border-box; }
+* {
+  box-sizing:border-box;
+}
 
 body {
   margin:0;
-  font-family:Tahoma, sans-serif;
+  min-height:100vh;
+  font-family:Tahoma,sans-serif;
   background:var(--cream);
   color:var(--dark);
-  min-height:100vh;
   overflow-x:hidden;
 }
 
 header {
   text-align:center;
-  padding:18px;
+  padding:14px;
 }
 
 .logo {
-  width:120px;
-  height:75px;
+  width:130px;
+  height:80px;
   object-fit:contain;
-}
-
-main {
-  min-height:570px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  overflow:hidden;
-  padding:25px 15px;
 }
 
 .intro {
   text-align:center;
-  margin-bottom:38px;
-  z-index:1;
+  padding:8px 15px 20px;
 }
 
 .intro h1 {
-  font-size:clamp(28px,5vw,42px);
-  margin:0 0 12px;
+  font-size:clamp(25px,5vw,38px);
+  margin:5px 0 10px;
 }
 
 .intro p {
   color:#789594;
-  font-size:16px;
-  margin:0;
+  font-size:15px;
 }
 
-/* الزخارف */
+/* خلفية الكتاب */
+
+.book-area {
+  min-height:550px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:25px 12px 45px;
+  position:relative;
+  overflow:hidden;
+}
 
 .decoration {
   position:absolute;
@@ -77,285 +77,209 @@ main {
 }
 
 .d1 {
-  width:75px;height:75px;
+  width:65px;
+  height:65px;
   background:var(--pink);
-  top:15%;right:10%;
+  top:15%;
+  right:7%;
 }
 
 .d2 {
-  width:55px;height:55px;
+  width:50px;
+  height:50px;
   background:var(--green);
-  bottom:15%;left:10%;
+  bottom:15%;
+  left:8%;
 }
 
 .d3 {
-  width:35px;height:35px;
+  width:35px;
+  height:35px;
   background:var(--yellow);
-  top:28%;left:15%;
+  top:28%;
+  left:13%;
 }
 
 .d4 {
-  width:45px;height:45px;
+  width:45px;
+  height:45px;
   background:var(--coral);
-  bottom:20%;right:12%;
+  bottom:20%;
+  right:10%;
 }
 
-/* صندوق الهدايا المرسوم */
+/* حاوية الكتاب */
 
-.gift-button {
-  width:280px;
-  height:280px;
-  border:8px solid white;
-  border-radius:40px;
-  background:var(--teal);
-  box-shadow:0 12px 0 #438F8E, 0 20px 35px #0002;
-  cursor:pointer;
+.book {
+  width:min(440px,90vw);
+  height:560px;
+  max-height:72vh;
+  min-height:420px;
   position:relative;
+  perspective:1800px;
+  z-index:2;
+}
+
+/* غلاف الكتاب */
+
+.cover {
+  position:absolute;
+  inset:0;
+  z-index:50;
+  border-radius:18px 28px 28px 18px;
+  background:linear-gradient(140deg,#75C4BE,#438F8E);
+  border:8px solid white;
+  box-shadow:
+    12px 12px 0 #397D7C,
+    18px 20px 30px #0002;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  transition:.25s;
-  animation:float 3s ease-in-out infinite;
-  z-index:2;
+  text-align:center;
+  cursor:pointer;
+  transition:transform 1s ease,opacity .8s ease;
+  transform-origin:right center;
+  overflow:hidden;
 }
 
-.gift-button:hover {
-  transform:translateY(-8px) rotate(-2deg);
+.cover.open {
+  transform:rotateY(-115deg);
+  opacity:0;
+  pointer-events:none;
 }
 
-.gift-button:active {
-  transform:scale(.94);
-}
-
-.gift-art {
-  width:145px;
-  height:115px;
-  position:relative;
-  margin-top:35px;
-}
-
-.gift-body {
-  position:absolute;
-  width:130px;
-  height:95px;
-  bottom:0;
-  left:7px;
-  background:var(--pink);
-  border-radius:12px;
-  box-shadow:0 7px 0 #D94D82;
-}
-
-.gift-body::before {
+.cover::before {
   content:"";
   position:absolute;
-  width:24px;
-  height:100%;
-  background:var(--yellow);
-  left:50%;
-  transform:translateX(-50%);
+  inset:15px;
+  border:3px solid #ffffffa8;
+  border-radius:12px 20px 20px 12px;
 }
 
-.gift-lid {
-  position:absolute;
-  width:150px;
-  height:25px;
-  background:var(--coral);
-  border-radius:9px;
-  left:-3px;
-  top:10px;
-  z-index:2;
+.cover-decoration {
+  font-size:45px;
+  margin-bottom:18px;
 }
 
-.gift-bow {
-  position:absolute;
-  top:-22px;
-  left:48px;
-  width:28px;
-  height:25px;
-  border:9px solid var(--yellow);
-  border-radius:50%;
-  transform:rotate(-30deg);
-  z-index:3;
-}
-
-.gift-bow::after {
-  content:"";
-  position:absolute;
-  width:28px;
-  height:25px;
-  border:9px solid var(--yellow);
-  border-radius:50%;
-  left:22px;
-  top:-8px;
-  transform:rotate(60deg);
-}
-
-.gift-label {
+.cover h2 {
   color:white;
-  font-size:21px;
-  font-weight:bold;
-  margin-top:35px;
-}
-
-.gift-subtitle {
-  color:#E9FFFF;
-  font-size:13px;
-  margin-top:8px;
-}
-
-@keyframes float {
-  0%,100% { transform:translateY(0); }
-  50% { transform:translateY(-9px); }
-}
-
-/* البطاقات المكتشفة */
-
-.discovered {
-  width:min(950px,94%);
-  margin:0 auto 45px;
-  padding:25px;
-  background:#ffffffa6;
-  border:3px solid white;
-  border-radius:28px;
-  text-align:center;
-}
-
-.discovered h2 {
-  margin:0 0 20px;
-  font-size:23px;
-}
-
-.cards-row {
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:13px;
-}
-
-.history-card {
-  width:110px;
-  min-height:115px;
-  border:3px solid var(--pale-pink);
-  background:white;
-  border-radius:19px;
-  padding:9px;
-  cursor:pointer;
-  transition:.2s;
-  box-shadow:0 5px 0 #f5d4e1;
-}
-
-.history-card:hover {
-  transform:translateY(-5px);
-  border-color:var(--pink);
-}
-
-.history-card img {
-  width:75px;
-  height:65px;
-  object-fit:contain;
-}
-
-.history-card p {
-  margin:5px 0 0;
-  font-size:12px;
-  font-weight:bold;
-}
-
-.empty-message {
-  color:#8BA3A2;
-  font-size:14px;
-}
-
-/* البطاقة التعليمية */
-
-.modal {
-  display:none;
-  position:fixed;
-  inset:0;
-  background:#345959ad;
-  z-index:10;
-  align-items:center;
-  justify-content:center;
-  padding:14px;
-}
-
-.modal.show { display:flex; }
-
-.learning-card {
-  width:min(650px,100%);
-  max-height:92vh;
-  overflow-y:auto;
-  background:white;
-  border:7px solid var(--yellow);
-  border-radius:30px;
-  padding:22px;
+  font-size:35px;
+  margin:10px 0;
   position:relative;
-  text-align:center;
-  animation:pop .3s ease;
 }
 
-@keyframes pop {
-  from { transform:scale(.85);opacity:0; }
-  to { transform:scale(1);opacity:1; }
+.cover p {
+  color:white;
+  font-size:16px;
+  position:relative;
 }
 
-.close {
-  position:absolute;
-  top:10px;
-  left:12px;
-  width:38px;
-  height:38px;
-  border:0;
-  border-radius:50%;
-  background:var(--pale-pink);
+.cover-button {
+  margin-top:30px;
+  background:var(--yellow);
   color:var(--dark);
-  font-size:24px;
+  border:0;
+  border-radius:18px;
+  padding:14px 28px;
+  font-size:17px;
+  font-weight:bold;
   cursor:pointer;
+  box-shadow:0 5px 0 #D6C56E;
+  position:relative;
 }
 
-.card-number {
-  display:inline-block;
+.cover-button:active {
+  transform:translateY(4px);
+  box-shadow:none;
+}
+
+/* صفحات الكتاب */
+
+.pages {
+  position:absolute;
+  inset:0;
+  background:#E9D7B7;
+  border-radius:12px 20px 20px 12px;
+  box-shadow:8px 8px 0 #CBB995;
+  transform-style:preserve-3d;
+}
+
+.page {
+  position:absolute;
+  inset:0;
+  background:white;
+  border:5px solid #F3E6CE;
+  border-radius:10px 18px 18px 10px;
+  transform-origin:right center;
+  transform-style:preserve-3d;
+  backface-visibility:hidden;
+  transition:transform .8s ease;
+  overflow:hidden;
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+.page.flipped {
+  transform:rotateY(-180deg);
+}
+
+.page-content {
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  overflow-y:auto;
+  padding:5px;
+}
+
+.page-number {
   background:var(--light-pink);
   color:white;
-  border-radius:20px;
   padding:8px 18px;
-  font-weight:bold;
-  margin-top:18px;
-}
-
-.picture {
-  width:100%;
-  height:220px;
-  object-fit:contain;
   border-radius:20px;
-  background:#FFF9EF;
-  margin-top:16px;
+  font-weight:bold;
+  margin-bottom:12px;
+  flex-shrink:0;
 }
 
-/* صور الكلمات والكلمات أسفلها */
+.main-picture {
+  width:100%;
+  height:180px;
+  object-fit:contain;
+  background:#FFF9EF;
+  border-radius:18px;
+  margin-bottom:12px;
+  flex-shrink:0;
+}
+
+/* الكلمات */
 
 .words-title {
-  font-size:18px;
-  margin:24px 0 13px;
+  font-size:17px;
+  margin:10px 0;
 }
 
 .words-grid {
   display:flex;
-  justify-content:center;
   flex-wrap:wrap;
-  gap:12px;
+  justify-content:center;
+  gap:9px;
+  width:100%;
 }
 
 .word-card {
-  width:105px;
-  min-height:120px;
-  padding:10px 7px;
+  width:85px;
+  min-height:100px;
+  padding:7px;
   border:2px solid var(--pale-pink);
-  border-radius:18px;
+  border-radius:15px;
   background:#FFF9FC;
   cursor:pointer;
-  transition:.2s;
 }
 
 .word-card:nth-child(3n+2) {
@@ -368,123 +292,162 @@ main {
   border-color:#F8E9A5;
 }
 
-.word-card:hover {
-  transform:translateY(-4px);
-  border-color:var(--pink);
-}
-
 .word-card img {
-  width:75px;
-  height:65px;
+  width:60px;
+  height:55px;
   object-fit:contain;
-  display:block;
-  margin:auto;
-}
-
-.word-card .no-image {
-  width:75px;
-  height:65px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:27px;
-  color:var(--coral);
 }
 
 .word-card span {
   display:block;
   direction:ltr;
-  font-size:16px;
+  font-size:14px;
   font-weight:bold;
-  margin-top:7px;
-  color:var(--dark);
+  margin-top:5px;
 }
 
-/* الجملة داخل مربعات */
+.no-image {
+  height:55px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  color:var(--coral);
+}
+
+/* الجملة */
 
 .sentence-title {
-  font-size:18px;
-  margin:27px 0 13px;
+  font-size:17px;
+  margin:18px 0 10px;
 }
 
 .sentence-box {
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
-  gap:8px;
+  gap:7px;
   direction:ltr;
-  padding:15px;
-  border-radius:20px;
   background:#FFF8E8;
+  border-radius:15px;
+  padding:12px;
+  width:100%;
 }
 
 .sentence-word {
   background:white;
   border:2px solid var(--yellow);
-  border-radius:12px;
-  padding:11px 14px;
-  font-size:18px;
+  border-radius:10px;
+  padding:8px 10px;
+  font-size:15px;
   font-weight:bold;
   color:var(--dark);
   cursor:pointer;
 }
 
-.sentence-word:hover {
-  background:var(--pale-pink);
-  border-color:var(--pink);
-}
-
 .translation {
+  width:100%;
   background:#F0FAF8;
   border:2px solid #CBE8E4;
-  border-radius:17px;
-  padding:14px;
-  margin-top:14px;
-  font-size:17px;
-  color:var(--dark);
+  border-radius:14px;
+  padding:12px;
+  margin-top:12px;
+  font-size:15px;
 }
+
+/* أزرار الصوت */
 
 .listen {
   background:var(--pink);
   color:white;
   border:0;
-  border-radius:18px;
-  padding:13px 25px;
-  font-size:16px;
+  border-radius:15px;
+  padding:11px 22px;
+  font-size:15px;
   font-weight:bold;
   cursor:pointer;
-  margin-top:17px;
+  margin:12px 0;
+  box-shadow:0 4px 0 #D94D82;
+  flex-shrink:0;
+}
+
+/* أزرار التنقل */
+
+.controls {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:22px;
+  margin-top:25px;
+  z-index:3;
+}
+
+.nav-button {
+  width:48px;
+  height:48px;
+  border:0;
+  border-radius:50%;
+  background:var(--pink);
+  color:white;
+  font-size:27px;
+  cursor:pointer;
   box-shadow:0 5px 0 #D94D82;
 }
 
-.listen:active {
-  transform:translateY(4px);
-  box-shadow:none;
+.nav-button:disabled {
+  opacity:.35;
+  cursor:not-allowed;
+}
+
+.counter {
+  background:white;
+  border:2px solid var(--yellow);
+  padding:10px 20px;
+  border-radius:20px;
+  font-weight:bold;
+  direction:ltr;
+}
+
+.back-button {
+  display:none;
+  margin-top:20px;
+  border:0;
+  border-radius:15px;
+  background:var(--teal);
+  color:white;
+  padding:11px 22px;
+  font-size:15px;
+  cursor:pointer;
+}
+
+.back-button.show {
+  display:block;
 }
 
 @media(max-width:500px) {
-  .gift-button {
-    width:245px;
-    height:245px;
+  .book {
+    width:92vw;
+    height:550px;
+    max-height:70vh;
+    min-height:410px;
   }
 
-  .learning-card {
-    padding:15px;
+  .page {
+    padding:13px;
   }
 
-  .picture {
-    height:175px;
+  .main-picture {
+    height:145px;
   }
 
   .word-card {
-    width:90px;
+    width:75px;
+    min-height:90px;
   }
 
-  .word-card img,
-  .word-card .no-image {
-    width:65px;
-    height:58px;
+  .word-card img {
+    width:52px;
+    height:48px;
   }
 }
 </style>
@@ -492,229 +455,383 @@ main {
 
 <body>
 
+<!-- الشعار -->
 <header>
-  <img class="logo" src="IMG_3829.png" alt="نماء">
+  <img class="logo" src="IMG_3829.png" alt="شعار رِواق">
 </header>
 
-<main>
+<div class="intro">
+  <h1>رحلتنا مع الكلمات!</h1>
+  <p>افتح كتاب رِواق واكتشف جملة جديدة في كل صفحة</p>
+</div>
+
+<main class="book-area">
+
   <div class="decoration d1"></div>
   <div class="decoration d2"></div>
   <div class="decoration d3"></div>
   <div class="decoration d4"></div>
 
-  <div class="intro">
-    <h1>يلا نكتشف!</h1>
-    <p>اضغط على الصندوق واكتشف كلمات وجمل جديدة</p>
-  </div>
+  <div class="book">
 
-  <button class="gift-button" onclick="openNextCard()">
-    <div class="gift-art">
-      <div class="gift-bow"></div>
-      <div class="gift-lid"></div>
-      <div class="gift-body"></div>
+    <!-- غلاف الكتاب -->
+    <div class="cover" id="cover" onclick="openBook()">
+
+      <div class="cover-decoration">✿</div>
+
+      <h2>كتاب رِواق</h2>
+
+      <p>نتعلم الكلمات ونقرأ الجمل</p>
+
+      <button class="cover-button">
+        افتح الكتاب
+      </button>
+
     </div>
-    <span class="gift-label">افتح واكتشف</span>
-    <span class="gift-subtitle">ماذا يوجد بالداخل؟</span>
-  </button>
-</main>
 
-<section class="discovered">
-  <h2>بطاقاتي المكتشفة</h2>
-  <div class="cards-row" id="history">
-    <p class="empty-message">اكتشف أول بطاقة لتظهر هنا</p>
+    <!-- الصفحات -->
+    <div class="pages" id="pages"></div>
+
   </div>
-</section>
 
-<div class="modal" id="modal" onclick="closeOutside(event)">
-  <div class="learning-card">
+  <!-- التنقل -->
+  <div class="controls">
 
-    <button class="close" onclick="closeCard()">×</button>
+    <button class="nav-button"
+      id="nextBtn"
+      onclick="nextPage()">
+      ❯
+    </button>
 
-    <div class="card-number" id="cardNumber"></div>
+    <div class="counter" id="counter">
+      0 / 31
+    </div>
 
-    <!-- الصورة الرئيسية -->
-    <img id="cardImage" class="picture" src="" alt="الصورة الرئيسية">
-
-    <!-- صور الكلمات والكلمات -->
-    <h3 class="words-title">نتعلم الكلمات</h3>
-    <div class="words-grid" id="wordsGrid"></div>
-
-    <!-- الجملة -->
-    <h3 class="sentence-title">الجملة كاملة</h3>
-    <div class="sentence-box" id="sentenceBox"></div>
-
-    <div class="translation" id="translation"></div>
-
-    <button class="listen" onclick="speakSentence()">
-      استمع للجملة
+    <button class="nav-button"
+      id="prevBtn"
+      onclick="prevPage()">
+      ❮
     </button>
 
   </div>
-</div>
+
+  <button class="back-button" id="backButton" onclick="closeBook()">
+    العودة إلى الغلاف
+  </button>
+
+</main>
 
 <script>
 
 /*
-  أضيفي محتوى كل بطاقة هنا.
+================================================
+محتوى الكتاب
 
-  words:
-  image = صورة الكلمة
-  word = الكلمة الإنجليزية
+كل صورة صفحة مستقلة.
 
-  sentence = الجملة الإنجليزية
-  translation = الترجمة العربية
+image       = الصورة الرئيسية
+sentence    = الجملة الإنجليزية
+translation = الترجمة العربية
+words       = صور الكلمات والكلمات الإنجليزية
+
+يمكنك إضافة المحتوى لكل صفحة بشكل مستقل.
+================================================
 */
 
-const imageFiles = [
-"IMG_4409.jpeg",
-"IMG_4410.jpeg",
-"IMG_4411.jpeg",
-"IMG_4412.jpeg",
-"IMG_4413.jpeg",
-"IMG_4414.jpeg",
-"IMG_4415.jpeg",
-"IMG_4416.jpeg",
-"IMG_4417.jpeg",
-"IMG_4418.jpeg",
-"IMG_4419.jpeg",
-"IMG_4420.jpeg",
-"IMG_4421.jpeg",
-"IMG_4422.jpeg",
-"IMG_4423.jpeg",
-"IMG_4424.jpeg",
-"IMG_4425.jpeg",
-"IMG_4426.jpeg",
-"IMG_4427.jpeg",
-"IMG_4428.jpeg",
-"IMG_4429.jpeg",
-"IMG_4430.jpeg",
-"IMG_4431.jpeg",
-"IMG_4432.jpeg",
-"IMG_4433.jpeg",
-"IMG_4434.jpeg",
-"IMG_4435.jpeg",
-"IMG_4436.jpeg",
-"IMG_4437.jpeg",
-"IMG_4438.jpeg",
-"IMG_4439.jpeg"
+const learningCards = [
+
+  { id:1, image:"IMG_4409.jpeg", sentence:"", translation:"", words:[] },
+  { id:2, image:"IMG_4410.jpeg", sentence:"", translation:"", words:[] },
+  { id:3, image:"IMG_4411.jpeg", sentence:"", translation:"", words:[] },
+  { id:4, image:"IMG_4412.jpeg", sentence:"", translation:"", words:[] },
+  { id:5, image:"IMG_4413.jpeg", sentence:"", translation:"", words:[] },
+  { id:6, image:"IMG_4414.jpeg", sentence:"", translation:"", words:[] },
+  { id:7, image:"IMG_4415.jpeg", sentence:"", translation:"", words:[] },
+  { id:8, image:"IMG_4416.jpeg", sentence:"", translation:"", words:[] },
+  { id:9, image:"IMG_4417.jpeg", sentence:"", translation:"", words:[] },
+  { id:10, image:"IMG_4418.jpeg", sentence:"", translation:"", words:[] },
+  { id:11, image:"IMG_4419.jpeg", sentence:"", translation:"", words:[] },
+  { id:12, image:"IMG_4420.jpeg", sentence:"", translation:"", words:[] },
+  { id:13, image:"IMG_4421.jpeg", sentence:"", translation:"", words:[] },
+  { id:14, image:"IMG_4422.jpeg", sentence:"", translation:"", words:[] },
+  { id:15, image:"IMG_4423.jpeg", sentence:"", translation:"", words:[] },
+  { id:16, image:"IMG_4424.jpeg", sentence:"", translation:"", words:[] },
+  { id:17, image:"IMG_4425.jpeg", sentence:"", translation:"", words:[] },
+  { id:18, image:"IMG_4426.jpeg", sentence:"", translation:"", words:[] },
+  { id:19, image:"IMG_4427.jpeg", sentence:"", translation:"", words:[] },
+  { id:20, image:"IMG_4428.jpeg", sentence:"", translation:"", words:[] },
+  { id:21, image:"IMG_4429.jpeg", sentence:"", translation:"", words:[] },
+  { id:22, image:"IMG_4430.jpeg", sentence:"", translation:"", words:[] },
+  { id:23, image:"IMG_4431.jpeg", sentence:"", translation:"", words:[] },
+  { id:24, image:"IMG_4432.jpeg", sentence:"", translation:"", words:[] },
+  { id:25, image:"IMG_4433.jpeg", sentence:"", translation:"", words:[] },
+  { id:26, image:"IMG_4434.jpeg", sentence:"", translation:"", words:[] },
+  { id:27, image:"IMG_4435.jpeg", sentence:"", translation:"", words:[] },
+  { id:28, image:"IMG_4436.jpeg", sentence:"", translation:"", words:[] },
+  { id:29, image:"IMG_4437.jpeg", sentence:"", translation:"", words:[] },
+  { id:30, image:"IMG_4438.jpeg", sentence:"", translation:"", words:[] },
+  { id:31, image:"IMG_4439.jpeg", sentence:"", translation:"", words:[] }
+
 ];
 
-const learningCards = imageFiles.map((image,index) => ({
-  id:index+1,
-  image:image,
-  sentence:"",
-  translation:"",
-  words:[
-    // مثال لإضافة الكلمات:
-    // { word:"Apple", image:"apple.jpeg" },
-    // { word:"Red", image:"red.jpeg" }
-  ]
-}));
 
-let discovered = [];
-let nextIndex = 0;
-let currentCard = null;
+/* حالة الكتاب */
 
-/* فتح البطاقة التالية */
+let currentPage = 0;
+let bookOpened = false;
 
-function openNextCard() {
 
-  if(discovered.length === learningCards.length) {
-    discovered = [];
-    nextIndex = 0;
-    renderHistory();
-  }
+/* إنشاء الصفحات */
 
-  while(
-    nextIndex < learningCards.length &&
-    discovered.includes(learningCards[nextIndex].id)
-  ) {
-    nextIndex++;
-  }
+function createPages() {
 
-  if(nextIndex >= learningCards.length) {
-    nextIndex = 0;
-  }
+  const pages = document.getElementById("pages");
 
-  showCard(learningCards[nextIndex]);
-  nextIndex++;
-}
+  pages.innerHTML = "";
 
-/* عرض البطاقة */
+  learningCards.forEach((card,index) => {
 
-function showCard(card) {
+    const page = document.createElement("div");
 
-  currentCard = card;
+    page.className = "page";
 
-  document.getElementById("cardNumber").textContent =
-    "البطاقة " + card.id;
+    page.style.zIndex = learningCards.length - index;
 
-  document.getElementById("cardImage").src = card.image;
+    page.innerHTML = `
+      <div class="page-content">
 
-  /* عرض الكلمات */
+        <div class="page-number">
+          الصفحة ${card.id}
+        </div>
 
-  const wordsGrid = document.getElementById("wordsGrid");
-  wordsGrid.innerHTML = "";
+        <img
+          class="main-picture"
+          src="${card.image}"
+          alt="الصورة الرئيسية"
+        >
 
-  card.words.forEach(item => {
+        <h3 class="words-title">نتعلم الكلمات</h3>
 
-    const box = document.createElement("button");
-    box.className = "word-card";
+        <div class="words-grid" id="words-${card.id}"></div>
 
-    if(item.image) {
-      const img = document.createElement("img");
-      img.src = item.image;
-      img.alt = item.word;
-      box.appendChild(img);
-    } else {
-      const placeholder = document.createElement("div");
-      placeholder.className = "no-image";
-      placeholder.textContent = "＋";
-      box.appendChild(placeholder);
-    }
+        <h3 class="sentence-title">الجملة كاملة</h3>
 
-    const word = document.createElement("span");
-    word.textContent = item.word;
+        <div class="sentence-box" id="sentence-${card.id}"></div>
 
-    box.appendChild(word);
+        <div class="translation" id="translation-${card.id}"></div>
 
-    box.onclick = () => speak(item.word);
+        <button class="listen" onclick="speakSentence(${card.id})">
+          🔊 استمع للجملة
+        </button>
 
-    wordsGrid.appendChild(box);
+      </div>
+    `;
+
+    pages.appendChild(page);
+
+    renderCardContent(card);
+
   });
 
-  /* عرض الجملة في مربعات منفصلة */
+}
 
-  const sentenceBox = document.getElementById("sentenceBox");
-  sentenceBox.innerHTML = "";
+
+/* إضافة الكلمات والجمل */
+
+function renderCardContent(card) {
+
+  const wordsGrid =
+    document.getElementById("words-" + card.id);
+
+  const sentenceBox =
+    document.getElementById("sentence-" + card.id);
+
+  const translation =
+    document.getElementById("translation-" + card.id);
+
+
+  /* الكلمات */
+
+  if(card.words.length === 0) {
+
+    wordsGrid.innerHTML =
+      '<p>ستضاف الكلمات هنا</p>';
+
+  } else {
+
+    card.words.forEach(item => {
+
+      const button = document.createElement("button");
+
+      button.className = "word-card";
+
+      if(item.image) {
+
+        const img = document.createElement("img");
+
+        img.src = item.image;
+
+        img.alt = item.word;
+
+        button.appendChild(img);
+
+      } else {
+
+        const placeholder = document.createElement("div");
+
+        placeholder.className = "no-image";
+
+        placeholder.textContent = "＋";
+
+        button.appendChild(placeholder);
+
+      }
+
+      const word = document.createElement("span");
+
+      word.textContent = item.word;
+
+      button.appendChild(word);
+
+      button.onclick = () => speak(item.word);
+
+      wordsGrid.appendChild(button);
+
+    });
+
+  }
+
+
+  /* الجملة */
 
   if(card.sentence.trim()) {
 
     card.sentence.trim().split(/\s+/).forEach(word => {
 
-      const wordBox = document.createElement("button");
-      wordBox.className = "sentence-word";
-      wordBox.textContent = word;
+      const button = document.createElement("button");
 
-      wordBox.onclick = () => speak(word);
+      button.className = "sentence-word";
 
-      sentenceBox.appendChild(wordBox);
+      button.textContent = word;
+
+      button.onclick = () => speak(word);
+
+      sentenceBox.appendChild(button);
+
     });
 
   } else {
+
     sentenceBox.textContent = "ستضاف الجملة هنا";
+
   }
 
-  document.getElementById("translation").textContent =
+
+  /* الترجمة */
+
+  translation.textContent =
     card.translation || "ستضاف الترجمة العربية هنا";
 
-  document.getElementById("modal").classList.add("show");
-
-  if(!discovered.includes(card.id)) {
-    discovered.push(card.id);
-    renderHistory();
-  }
 }
+
+
+/* فتح الكتاب */
+
+function openBook() {
+
+  bookOpened = true;
+
+  document.getElementById("cover").classList.add("open");
+
+  document.getElementById("backButton").classList.add("show");
+
+  updateBook();
+
+}
+
+
+/* الصفحة التالية */
+
+function nextPage() {
+
+  if(!bookOpened) return;
+
+  if(currentPage < learningCards.length) {
+
+    currentPage++;
+
+    updateBook();
+
+  }
+
+}
+
+
+/* الصفحة السابقة */
+
+function prevPage() {
+
+  if(!bookOpened) return;
+
+  if(currentPage > 0) {
+
+    currentPage--;
+
+    updateBook();
+
+  }
+
+}
+
+
+/* تحديث الصفحات */
+
+function updateBook() {
+
+  const pages = document.querySelectorAll(".page");
+
+  pages.forEach((page,index) => {
+
+    const flipped = index < currentPage;
+
+    page.classList.toggle("flipped",flipped);
+
+    page.style.zIndex = flipped
+      ? index + 1
+      : learningCards.length - index + 1;
+
+  });
+
+  document.getElementById("counter").textContent =
+    currentPage + " / " + learningCards.length;
+
+  document.getElementById("nextBtn").disabled =
+    currentPage >= learningCards.length;
+
+  document.getElementById("prevBtn").disabled =
+    currentPage === 0;
+
+}
+
+
+/* العودة إلى الغلاف */
+
+function closeBook() {
+
+  currentPage = 0;
+
+  bookOpened = false;
+
+  window.speechSynthesis.cancel();
+
+  document.getElementById("cover").classList.remove("open");
+
+  document.getElementById("backButton").classList.remove("show");
+
+  updateBook();
+
+}
+
 
 /* الصوت */
 
@@ -725,66 +842,36 @@ function speak(text) {
   window.speechSynthesis.cancel();
 
   const speech = new SpeechSynthesisUtterance(text);
+
   speech.lang = "en-US";
+
   speech.rate = 0.85;
 
   window.speechSynthesis.speak(speech);
+
 }
 
-function speakSentence() {
-  if(currentCard) {
-    speak(currentCard.sentence);
-  }
-}
 
-/* إغلاق البطاقة */
+/* الاستماع للجملة كاملة */
 
-function closeCard() {
-  document.getElementById("modal").classList.remove("show");
-  window.speechSynthesis.cancel();
-}
+function speakSentence(id) {
 
-function closeOutside(event) {
-  if(event.target.id === "modal") {
-    closeCard();
-  }
-}
+  const card = learningCards.find(item => item.id === id);
 
-/* البطاقات المكتشفة */
+  if(card) {
 
-function renderHistory() {
+    speak(card.sentence);
 
-  const history = document.getElementById("history");
-  history.innerHTML = "";
-
-  if(discovered.length === 0) {
-    history.innerHTML =
-      '<p class="empty-message">اكتشف أول بطاقة لتظهر هنا</p>';
-    return;
   }
 
-  discovered.forEach(id => {
-
-    const card = learningCards.find(item => item.id === id);
-
-    const button = document.createElement("button");
-    button.className = "history-card";
-
-    const img = document.createElement("img");
-    img.src = card.image;
-    img.alt = "";
-
-    const label = document.createElement("p");
-    label.textContent = "بطاقة " + id;
-
-    button.appendChild(img);
-    button.appendChild(label);
-
-    button.onclick = () => showCard(card);
-
-    history.appendChild(button);
-  });
 }
+
+
+/* تشغيل الكتاب */
+
+createPages();
+
+updateBook();
 
 </script>
 
