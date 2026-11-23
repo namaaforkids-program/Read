@@ -312,7 +312,7 @@ header {
   color:#438F8E;
 }
 
-/* بطاقات الكلمات بالعربي والإنجليزي */
+/* بطاقات الكلمات */
 
 .words-grid {
   display:grid;
@@ -322,13 +322,11 @@ header {
 
 .word-card {
   min-width:0;
-  min-height:85px;
-  padding:12px 7px;
+  min-height:105px;
+  padding:10px 7px;
   border:2px solid var(--pale-pink);
   border-radius:16px;
   background:#FFF7FB;
-  cursor:pointer;
-  transition:.2s;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -346,11 +344,6 @@ header {
   border-color:#F8E9A5;
 }
 
-.word-card:hover {
-  transform:translateY(-4px);
-  border-color:var(--pink);
-}
-
 .word-arabic {
   font-size:16px;
   font-weight:bold;
@@ -364,7 +357,28 @@ header {
   color:var(--dark);
 }
 
-/* الجملة */
+.word-audio-buttons {
+  display:flex;
+  gap:7px;
+  justify-content:center;
+  margin-top:3px;
+}
+
+.audio-small {
+  border:0;
+  border-radius:12px;
+  padding:6px 10px;
+  background:#6AB0AF;
+  color:white;
+  font-size:12px;
+  cursor:pointer;
+}
+
+.audio-small.english {
+  background:#FA699E;
+}
+
+/* الجمل */
 
 .sentence-title {
   margin:20px 0 10px;
@@ -394,11 +408,6 @@ header {
   cursor:pointer;
 }
 
-.sentence-word:hover {
-  background:var(--pale-pink);
-  border-color:var(--pink);
-}
-
 .translation {
   background:#EFF9F7;
   border:2px solid #CBE8E4;
@@ -409,18 +418,29 @@ header {
   text-align:center;
 }
 
+.sentence-audio-buttons {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:13px;
+}
+
 .listen {
   width:100%;
   border:0;
   background:var(--pink);
   color:white;
   border-radius:15px;
-  padding:12px;
-  font-size:16px;
+  padding:12px 7px;
+  font-size:14px;
   font-weight:bold;
   cursor:pointer;
-  margin-top:13px;
   box-shadow:0 4px 0 #D94D82;
+}
+
+.listen.arabic {
+  background:var(--teal);
+  box-shadow:0 4px 0 #438F8E;
 }
 
 .controls {
@@ -473,8 +493,6 @@ header {
   display:block;
 }
 
-/* الجوال */
-
 @media(max-width:650px) {
   .book {
     height:680px;
@@ -516,7 +534,7 @@ header {
   }
 
   .word-card {
-    min-height:75px;
+    min-height:100px;
     padding:8px 3px;
   }
 
@@ -526,6 +544,11 @@ header {
 
   .word-english {
     font-size:14px;
+  }
+
+  .audio-small {
+    font-size:10px;
+    padding:6px 7px;
   }
 
   .sentence-word {
@@ -538,7 +561,8 @@ header {
   }
 
   .listen {
-    font-size:13px;
+    font-size:12px;
+    padding:10px 4px;
   }
 }
 
@@ -552,7 +576,7 @@ header {
   }
 
   .word-card {
-    min-height:70px;
+    min-height:95px;
   }
 }
 </style>
@@ -595,8 +619,6 @@ header {
 
     <div class="spread">
 
-      <!-- صفحة الصورة -->
-
       <section class="book-page image-page">
 
         <div class="page-number" id="imagePageNumber">
@@ -618,8 +640,6 @@ header {
 
       </section>
 
-      <!-- صفحة الكلمات والجملة -->
-
       <section class="book-page content-page">
 
         <div class="page-number" id="contentPageNumber">
@@ -638,17 +658,22 @@ header {
           ستضاف الترجمة العربية هنا
         </div>
 
-        <button class="listen" onclick="speakSentence()">
-          🔊 استمع للجملة
-        </button>
+        <div class="sentence-audio-buttons">
+
+          <button class="listen" onclick="speakSentenceEnglish()">
+            🔊 استمع بالإنجليزية
+          </button>
+
+          <button class="listen arabic" onclick="speakSentenceArabic()">
+            🔊 استمع بالعربية
+          </button>
+
+        </div>
 
       </section>
 
     </div>
-
   </div>
-
-  <!-- أزرار التقليب -->
 
   <div class="controls">
 
@@ -657,7 +682,7 @@ header {
     </button>
 
     <div class="counter" id="counter">
-      1 / 31
+      1 / 61
     </div>
 
     <button class="nav-button" id="prevBtn" onclick="prevPage()">
@@ -674,13 +699,11 @@ header {
 
 <script>
 
-/*
-كل عنصر يمثل صفحة تعليمية.
-الكلمات تكتب بالعربي والإنجليزي.
-الصورة الرئيسية في صفحة مستقلة.
-*/
+/* بيانات صفحات الكتاب */
 
 const learningCards = [
+
+  /* الصفحات 1 إلى 31 */
 
   {
     id:1,
@@ -722,7 +745,280 @@ const learningCards = [
   {id:28,image:"IMG_4436.jpeg",sentence:"",translation:"",words:[]},
   {id:29,image:"IMG_4437.jpeg",sentence:"",translation:"",words:[]},
   {id:30,image:"IMG_4438.jpeg",sentence:"",translation:"",words:[]},
-  {id:31,image:"IMG_4439.jpeg",sentence:"",translation:"",words:[]}
+  {id:31,image:"IMG_4439.jpeg",sentence:"",translation:"",words:[]},
+
+  /* الصفحات 32 إلى 41: نضيف محتواها لاحقًا */
+
+  {id:32,image:"",sentence:"",translation:"",words:[]},
+  {id:33,image:"",sentence:"",translation:"",words:[]},
+  {id:34,image:"",sentence:"",translation:"",words:[]},
+  {id:35,image:"",sentence:"",translation:"",words:[]},
+  {id:36,image:"",sentence:"",translation:"",words:[]},
+  {id:37,image:"",sentence:"",translation:"",words:[]},
+  {id:38,image:"",sentence:"",translation:"",words:[]},
+  {id:39,image:"",sentence:"",translation:"",words:[]},
+  {id:40,image:"",sentence:"",translation:"",words:[]},
+  {id:41,image:"",sentence:"",translation:"",words:[]},
+
+  /* الصفحة 42 */
+
+  {
+    id:42,
+    image:"IMG_4442.jpeg",
+    sentence:"The paper is torn.",
+    translation:"الورق ممزق.",
+    words:[
+      {word:"Paper",arabic:"الورق"},
+      {word:"Torn",arabic:"ممزق"}
+    ]
+  },
+
+  /* الصفحة 43 */
+
+  {
+    id:43,
+    image:"IMG_4443.jpeg",
+    sentence:"The stone is hard.",
+    translation:"الحجر صلب.",
+    words:[
+      {word:"Stone",arabic:"الحجر"},
+      {word:"Hard",arabic:"صلب"}
+    ]
+  },
+
+  /* الصفحة 44 */
+
+  {
+    id:44,
+    image:"IMG_4444.jpeg",
+    sentence:"The fabric is soft.",
+    translation:"القماش ناعم.",
+    words:[
+      {word:"Fabric",arabic:"القماش"},
+      {word:"Soft",arabic:"ناعم"}
+    ]
+  },
+
+  /* الصفحة 45 */
+
+  {
+    id:45,
+    image:"IMG_4445.jpeg",
+    sentence:"The perfume is nice.",
+    translation:"العطر جميل.",
+    words:[
+      {word:"Perfume",arabic:"العطر"},
+      {word:"Nice",arabic:"جميل"}
+    ]
+  },
+
+  /* الصفحة 46 */
+
+  {
+    id:46,
+    image:"IMG_4446.jpeg",
+    sentence:"The food is delicious.",
+    translation:"الطعام لذيذ.",
+    words:[
+      {word:"Food",arabic:"الطعام"},
+      {word:"Delicious",arabic:"لذيذ"}
+    ]
+  },
+
+  /* الصفحة 47 */
+
+  {
+    id:47,
+    image:"IMG_4447.jpeg",
+    sentence:"The book is new.",
+    translation:"الكتاب جديد.",
+    words:[
+      {word:"Book",arabic:"الكتاب"},
+      {word:"New",arabic:"جديد"}
+    ]
+  },
+
+  /* الصفحة 48 */
+
+  {
+    id:48,
+    image:"IMG_4448.jpeg",
+    sentence:"The shoe is clean.",
+    translation:"الحذاء نظيف.",
+    words:[
+      {word:"Shoe",arabic:"الحذاء"},
+      {word:"Clean",arabic:"نظيف"}
+    ]
+  },
+
+  /* الصفحة 49 */
+
+  {
+    id:49,
+    image:"IMG_4449.jpeg",
+    sentence:"The sky is cloudy.",
+    translation:"السماء غائمة.",
+    words:[
+      {word:"Sky",arabic:"السماء"},
+      {word:"Cloudy",arabic:"غائمة"}
+    ]
+  },
+
+  /* الصفحة 50 */
+
+  {
+    id:50,
+    image:"IMG_4450.jpeg",
+    sentence:"The rain is heavy.",
+    translation:"المطر غزير.",
+    words:[
+      {word:"Rain",arabic:"المطر"},
+      {word:"Heavy",arabic:"غزير"}
+    ]
+  },
+
+  /* الصفحة 51 */
+
+  {
+    id:51,
+    image:"IMG_4451.jpeg",
+    sentence:"The child is happy.",
+    translation:"الطفل سعيد.",
+    words:[
+      {word:"Child",arabic:"الطفل"},
+      {word:"Happy",arabic:"سعيد"}
+    ]
+  },
+
+  /* الصفحة 52 */
+
+  {
+    id:52,
+    image:"IMG_4452.jpeg",
+    sentence:"The weather is mild.",
+    translation:"الجو معتدل.",
+    words:[
+      {word:"Weather",arabic:"الجو"},
+      {word:"Mild",arabic:"معتدل"}
+    ]
+  },
+
+  /* الصفحة 53 */
+
+  {
+    id:53,
+    image:"IMG_4453.jpeg",
+    sentence:"The road is crowded.",
+    translation:"الطريق مزدحم.",
+    words:[
+      {word:"Road",arabic:"الطريق"},
+      {word:"Crowded",arabic:"مزدحم"}
+    ]
+  },
+
+  /* الصفحة 54 */
+
+  {
+    id:54,
+    image:"IMG_4454.jpeg",
+    sentence:"The room is dark.",
+    translation:"الغرفة مظلمة.",
+    words:[
+      {word:"Room",arabic:"الغرفة"},
+      {word:"Dark",arabic:"مظلمة"}
+    ]
+  },
+
+  /* الصفحة 55 */
+
+  {
+    id:55,
+    image:"IMG_4455.jpeg",
+    sentence:"The apple is red.",
+    translation:"التفاحة حمراء.",
+    words:[
+      {word:"Apple",arabic:"التفاحة"},
+      {word:"Red",arabic:"حمراء"}
+    ]
+  },
+
+  /* الصفحة 56 */
+
+  {
+    id:56,
+    image:"IMG_4456.jpeg",
+    sentence:"The dog is brown.",
+    translation:"الكلب بني.",
+    words:[
+      {word:"Dog",arabic:"الكلب"},
+      {word:"Brown",arabic:"بني"}
+    ]
+  },
+
+  /* الصفحة 57 */
+
+  {
+    id:57,
+    image:"IMG_4457.jpeg",
+    sentence:"The cat is orange.",
+    translation:"القطة برتقالية.",
+    words:[
+      {word:"Cat",arabic:"القطة"},
+      {word:"Orange",arabic:"برتقالية"}
+    ]
+  },
+
+  /* الصفحة 58 */
+
+  {
+    id:58,
+    image:"IMG_4458.jpeg",
+    sentence:"Winter is cold.",
+    translation:"الشتاء بارد.",
+    words:[
+      {word:"Winter",arabic:"الشتاء"},
+      {word:"Cold",arabic:"بارد"}
+    ]
+  },
+
+  /* الصفحة 59 */
+
+  {
+    id:59,
+    image:"IMG_4459.jpeg",
+    sentence:"The desert is hot.",
+    translation:"الصحراء حارة.",
+    words:[
+      {word:"Desert",arabic:"الصحراء"},
+      {word:"Hot",arabic:"حارة"}
+    ]
+  },
+
+  /* الصفحة 60 */
+
+  {
+    id:60,
+    image:"IMG_4460.jpeg",
+    sentence:"The TV is off.",
+    translation:"التلفاز مغلق.",
+    words:[
+      {word:"TV",arabic:"التلفاز"},
+      {word:"Off",arabic:"مغلق"}
+    ]
+  },
+
+  /* الصفحة 61 */
+
+  {
+    id:61,
+    image:"IMG_4461.jpeg",
+    sentence:"The TV is on.",
+    translation:"التلفاز مفتوح.",
+    words:[
+      {word:"TV",arabic:"التلفاز"},
+      {word:"On",arabic:"مفتوح"}
+    ]
+  }
 
 ];
 
@@ -730,13 +1026,21 @@ let currentPage = 0;
 let bookOpened = false;
 
 
-/* عرض الصفحة الحالية */
+/* عرض الصفحة */
 
 function showPage() {
 
   const card = learningCards[currentPage];
 
-  document.getElementById("mainPicture").src = card.image;
+  const picture = document.getElementById("mainPicture");
+
+  if(card.image) {
+    picture.src = card.image;
+    picture.style.display = "block";
+  } else {
+    picture.removeAttribute("src");
+    picture.style.display = "none";
+  }
 
   document.getElementById("imagePageNumber").textContent =
     "الصفحة " + card.id;
@@ -745,7 +1049,7 @@ function showPage() {
     "الصفحة " + card.id;
 
   document.getElementById("counter").textContent =
-    (currentPage + 1) + " / " + learningCards.length;
+    card.id + " / " + learningCards.length;
 
   document.getElementById("nextBtn").disabled =
     currentPage === learningCards.length - 1;
@@ -762,7 +1066,7 @@ function showPage() {
 }
 
 
-/* عرض الكلمات بالعربي والإنجليزي */
+/* عرض الكلمات بالعربية والإنجليزية */
 
 function renderWords(card) {
 
@@ -778,8 +1082,8 @@ function renderWords(card) {
 
   card.words.forEach(item => {
 
-    const button = document.createElement("button");
-    button.className = "word-card";
+    const cardElement = document.createElement("div");
+    cardElement.className = "word-card";
 
     const arabic = document.createElement("span");
     arabic.className = "word-arabic";
@@ -789,19 +1093,34 @@ function renderWords(card) {
     english.className = "word-english";
     english.textContent = item.word;
 
-    button.appendChild(arabic);
-    button.appendChild(english);
+    const buttons = document.createElement("div");
+    buttons.className = "word-audio-buttons";
 
-    button.onclick = () => speak(item.word);
+    const arabicButton = document.createElement("button");
+    arabicButton.className = "audio-small";
+    arabicButton.textContent = "🔊 عربي";
+    arabicButton.onclick = () => speakArabic(item.arabic);
 
-    grid.appendChild(button);
+    const englishButton = document.createElement("button");
+    englishButton.className = "audio-small english";
+    englishButton.textContent = "🔊 English";
+    englishButton.onclick = () => speakEnglish(item.word);
+
+    buttons.appendChild(arabicButton);
+    buttons.appendChild(englishButton);
+
+    cardElement.appendChild(arabic);
+    cardElement.appendChild(english);
+    cardElement.appendChild(buttons);
+
+    grid.appendChild(cardElement);
 
   });
 
 }
 
 
-/* عرض الجملة */
+/* عرض كلمات الجملة الإنجليزية */
 
 function renderSentence(card) {
 
@@ -820,7 +1139,7 @@ function renderSentence(card) {
 
     button.className = "sentence-word";
     button.textContent = word;
-    button.onclick = () => speak(word);
+    button.onclick = () => speakEnglish(word);
 
     box.appendChild(button);
 
@@ -871,7 +1190,7 @@ function prevPage() {
 }
 
 
-/* العودة للغلاف */
+/* العودة إلى الغلاف */
 
 function closeBook() {
 
@@ -888,32 +1207,80 @@ function closeBook() {
 }
 
 
-/* نطق الكلمة الإنجليزية */
+/* النطق باللغة الإنجليزية */
 
-function speak(text) {
+function speakEnglish(text) {
+
+  speak(text,"en-US");
+
+}
+
+
+/* النطق باللغة العربية */
+
+function speakArabic(text) {
+
+  speak(text,"ar-SA");
+
+}
+
+
+/* تشغيل الصوت */
+
+function speak(text,language) {
 
   if(!text) return;
+
+  if(!("speechSynthesis" in window)) {
+    alert("المتصفح لا يدعم خاصية النطق الصوتي.");
+    return;
+  }
 
   window.speechSynthesis.cancel();
 
   const speech = new SpeechSynthesisUtterance(text);
 
-  speech.lang = "en-US";
+  speech.lang = language;
   speech.rate = 0.85;
+
+  const voices = window.speechSynthesis.getVoices();
+
+  const selectedVoice = voices.find(voice =>
+    voice.lang.toLowerCase() === language.toLowerCase()
+  ) || voices.find(voice =>
+    voice.lang.toLowerCase().startsWith(language.split("-")[0].toLowerCase())
+  );
+
+  if(selectedVoice) {
+    speech.voice = selectedVoice;
+  }
 
   window.speechSynthesis.speak(speech);
 
 }
 
 
-/* الاستماع للجملة كاملة */
+/* الاستماع للجملة الإنجليزية كاملة */
 
-function speakSentence() {
+function speakSentenceEnglish() {
 
   const card = learningCards[currentPage];
 
   if(card && card.sentence) {
-    speak(card.sentence);
+    speakEnglish(card.sentence);
+  }
+
+}
+
+
+/* الاستماع للجملة العربية كاملة */
+
+function speakSentenceArabic() {
+
+  const card = learningCards[currentPage];
+
+  if(card && card.translation) {
+    speakArabic(card.translation);
   }
 
 }
