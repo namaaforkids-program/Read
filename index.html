@@ -2,439 +2,489 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>رِواق</title>
 
 <style>
 :root {
-  --cream: #FFEFD2;
-  --teal: #6AB0AF;
-  --coral: #F5A89A;
-  --yellow: #FFF2A5;
-  --pink: #FA699E;
-  --light-pink: #FF9FC7;
-  --pale-pink: #FFE7F0;
-  --green: #4ADD82;
-  --dark: #426B6A;
+  --cream:#FFEFD2;
+  --teal:#6AB0AF;
+  --coral:#F5A89A;
+  --yellow:#FFF2A5;
+  --pink:#FA699E;
+  --light-pink:#FF9FC7;
+  --pale-pink:#FFE7F0;
+  --green:#4ADD82;
+  --dark:#426B6A;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing:border-box; }
 
 body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: "Trebuchet MS", Tahoma, sans-serif;
-  background:
-    radial-gradient(circle at 10% 15%, #ffffff 0 5px, transparent 6px),
-    radial-gradient(circle at 90% 30%, #ffffff 0 6px, transparent 7px),
-    var(--cream);
-  color: var(--dark);
-  overflow-x: hidden;
+  margin:0;
+  font-family:Tahoma, sans-serif;
+  background:var(--cream);
+  color:var(--dark);
+  min-height:100vh;
+  overflow-x:hidden;
 }
 
-/* Header */
-
 header {
-  display: flex;
-  justify-content: center;
-  padding: 18px 15px 5px;
+  text-align:center;
+  padding:18px;
 }
 
 .logo {
-  width: 115px;
-  height: 75px;
-  object-fit: contain;
+  width:120px;
+  height:75px;
+  object-fit:contain;
 }
 
-/* Main */
-
 main {
-  min-height: 570px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  position: relative;
-  padding: 25px 15px;
-  overflow: hidden;
+  min-height:570px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  padding:25px 15px;
 }
 
 .intro {
-  text-align: center;
-  margin-bottom: 35px;
-  z-index: 2;
+  text-align:center;
+  margin-bottom:38px;
+  z-index:1;
 }
 
 .intro h1 {
-  font-size: clamp(28px, 5vw, 42px);
-  color: var(--dark);
-  margin: 0 0 12px;
-  font-weight: 900;
+  font-size:clamp(28px,5vw,42px);
+  margin:0 0 12px;
 }
 
 .intro p {
-  color: #779594;
-  font-size: 17px;
-  margin: 0;
+  color:#789594;
+  font-size:16px;
+  margin:0;
 }
 
-/* Decorations */
+/* الزخارف */
 
-.shape {
-  position: absolute;
-  pointer-events: none;
-  z-index: 0;
+.decoration {
+  position:absolute;
+  border-radius:50%;
+  pointer-events:none;
 }
 
-.circle-pink {
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  background: var(--pink);
-  top: 18%;
-  right: 9%;
-  opacity: .8;
+.d1 {
+  width:75px;height:75px;
+  background:var(--pink);
+  top:15%;right:10%;
 }
 
-.circle-green {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  background: var(--green);
-  bottom: 15%;
-  left: 10%;
+.d2 {
+  width:55px;height:55px;
+  background:var(--green);
+  bottom:15%;left:10%;
 }
 
-.circle-yellow {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background: var(--yellow);
-  top: 30%;
-  left: 16%;
+.d3 {
+  width:35px;height:35px;
+  background:var(--yellow);
+  top:28%;left:15%;
 }
 
-.flower {
-  font-size: 38px;
-  color: var(--coral);
-  top: 12%;
-  left: 9%;
+.d4 {
+  width:45px;height:45px;
+  background:var(--coral);
+  bottom:20%;right:12%;
 }
 
-.star {
-  font-size: 40px;
-  color: var(--pink);
-  bottom: 18%;
-  right: 12%;
-}
-
-/* Main gift */
+/* صندوق الهدايا المرسوم */
 
 .gift-button {
-  width: min(280px, 72vw);
-  height: 280px;
-  border: 9px solid white;
-  border-radius: 42px;
-  background: var(--teal);
-  box-shadow:
-    0 12px 0 #438F8E,
-    0 20px 35px #537c7c30;
-  cursor: pointer;
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transition: transform .25s;
-  animation: float 3s ease-in-out infinite;
+  width:280px;
+  height:280px;
+  border:8px solid white;
+  border-radius:40px;
+  background:var(--teal);
+  box-shadow:0 12px 0 #438F8E, 0 20px 35px #0002;
+  cursor:pointer;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  transition:.25s;
+  animation:float 3s ease-in-out infinite;
+  z-index:2;
 }
 
 .gift-button:hover {
-  transform: translateY(-8px) rotate(-2deg);
+  transform:translateY(-8px) rotate(-2deg);
 }
 
 .gift-button:active {
-  transform: scale(.94);
+  transform:scale(.94);
 }
 
-.gift-box {
-  width: 130px;
-  height: 105px;
-  background: var(--pink);
-  border-radius: 13px;
-  position: relative;
-  margin-top: 20px;
-  box-shadow: 0 7px 0 #d94d82;
+.gift-art {
+  width:145px;
+  height:115px;
+  position:relative;
+  margin-top:35px;
 }
 
-.gift-box::before {
-  content: "";
-  position: absolute;
-  width: 23px;
-  height: 100%;
-  background: var(--yellow);
-  left: 50%;
-  transform: translateX(-50%);
+.gift-body {
+  position:absolute;
+  width:130px;
+  height:95px;
+  bottom:0;
+  left:7px;
+  background:var(--pink);
+  border-radius:12px;
+  box-shadow:0 7px 0 #D94D82;
 }
 
-.gift-box::after {
-  content: "";
-  position: absolute;
-  width: 150px;
-  height: 24px;
-  background: var(--coral);
-  border-radius: 9px;
-  top: -15px;
-  left: -10px;
+.gift-body::before {
+  content:"";
+  position:absolute;
+  width:24px;
+  height:100%;
+  background:var(--yellow);
+  left:50%;
+  transform:translateX(-50%);
 }
 
-.ribbon {
-  position: absolute;
-  width: 42px;
-  height: 30px;
-  border: 9px solid var(--yellow);
-  border-radius: 50%;
-  top: -42px;
-  left: 20px;
-  transform: rotate(-25deg);
+.gift-lid {
+  position:absolute;
+  width:150px;
+  height:25px;
+  background:var(--coral);
+  border-radius:9px;
+  left:-3px;
+  top:10px;
+  z-index:2;
 }
 
-.ribbon::after {
-  content: "";
-  position: absolute;
-  width: 42px;
-  height: 30px;
-  border: 9px solid var(--yellow);
-  border-radius: 50%;
-  left: 28px;
-  top: -9px;
-  transform: rotate(50deg);
+.gift-bow {
+  position:absolute;
+  top:-22px;
+  left:48px;
+  width:28px;
+  height:25px;
+  border:9px solid var(--yellow);
+  border-radius:50%;
+  transform:rotate(-30deg);
+  z-index:3;
+}
+
+.gift-bow::after {
+  content:"";
+  position:absolute;
+  width:28px;
+  height:25px;
+  border:9px solid var(--yellow);
+  border-radius:50%;
+  left:22px;
+  top:-8px;
+  transform:rotate(60deg);
 }
 
 .gift-label {
-  color: white;
-  font-size: 22px;
-  font-weight: bold;
-  margin-top: 35px;
+  color:white;
+  font-size:21px;
+  font-weight:bold;
+  margin-top:35px;
 }
 
 .gift-subtitle {
-  color: #E8FFFF;
-  font-size: 13px;
-  margin-top: 8px;
+  color:#E9FFFF;
+  font-size:13px;
+  margin-top:8px;
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-9px); }
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-9px); }
 }
 
-/* Discovered cards */
+/* البطاقات المكتشفة */
 
 .discovered {
-  width: min(950px, 94%);
-  margin: 0 auto 55px;
-  padding: 25px;
-  background: #ffffff8c;
-  border-radius: 30px;
-  border: 3px solid white;
-  text-align: center;
+  width:min(950px,94%);
+  margin:0 auto 45px;
+  padding:25px;
+  background:#ffffffa6;
+  border:3px solid white;
+  border-radius:28px;
+  text-align:center;
 }
 
 .discovered h2 {
-  font-size: 24px;
-  margin: 0 0 20px;
+  margin:0 0 20px;
+  font-size:23px;
 }
 
 .cards-row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 14px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:13px;
 }
 
 .history-card {
-  width: 115px;
-  min-height: 120px;
-  background: white;
-  border: 3px solid var(--pale-pink);
-  border-radius: 20px;
-  padding: 10px;
-  cursor: pointer;
-  transition: .2s;
-  box-shadow: 0 5px 0 #f5d4e1;
+  width:110px;
+  min-height:115px;
+  border:3px solid var(--pale-pink);
+  background:white;
+  border-radius:19px;
+  padding:9px;
+  cursor:pointer;
+  transition:.2s;
+  box-shadow:0 5px 0 #f5d4e1;
 }
 
 .history-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--pink);
+  transform:translateY(-5px);
+  border-color:var(--pink);
 }
 
 .history-card img {
-  width: 75px;
-  height: 65px;
-  object-fit: contain;
-  border-radius: 10px;
+  width:75px;
+  height:65px;
+  object-fit:contain;
 }
 
 .history-card p {
-  font-size: 13px;
-  font-weight: bold;
-  margin: 7px 0 0;
+  margin:5px 0 0;
+  font-size:12px;
+  font-weight:bold;
 }
 
 .empty-message {
-  color: #8BA3A2;
-  font-size: 15px;
+  color:#8BA3A2;
+  font-size:14px;
 }
 
-/* Learning card */
+/* البطاقة التعليمية */
 
 .modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: #345959a8;
-  z-index: 10;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#345959ad;
+  z-index:10;
+  align-items:center;
+  justify-content:center;
+  padding:14px;
 }
 
-.modal.show {
-  display: flex;
-}
+.modal.show { display:flex; }
 
 .learning-card {
-  width: min(520px, 100%);
-  background: white;
-  border: 7px solid var(--yellow);
-  border-radius: 32px;
-  padding: 25px;
-  position: relative;
-  text-align: center;
-  box-shadow: 0 15px 40px #00000025;
-  animation: pop .3s ease;
+  width:min(650px,100%);
+  max-height:92vh;
+  overflow-y:auto;
+  background:white;
+  border:7px solid var(--yellow);
+  border-radius:30px;
+  padding:22px;
+  position:relative;
+  text-align:center;
+  animation:pop .3s ease;
 }
 
 @keyframes pop {
-  from {
-    transform: scale(.8);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+  from { transform:scale(.85);opacity:0; }
+  to { transform:scale(1);opacity:1; }
 }
 
 .close {
-  position: absolute;
-  top: 12px;
-  left: 13px;
-  width: 39px;
-  height: 39px;
-  border: 0;
-  border-radius: 50%;
-  background: var(--pale-pink);
-  color: var(--dark);
-  font-size: 25px;
-  cursor: pointer;
+  position:absolute;
+  top:10px;
+  left:12px;
+  width:38px;
+  height:38px;
+  border:0;
+  border-radius:50%;
+  background:var(--pale-pink);
+  color:var(--dark);
+  font-size:24px;
+  cursor:pointer;
 }
 
 .card-number {
-  background: var(--light-pink);
-  color: white;
-  display: inline-block;
-  padding: 7px 18px;
-  border-radius: 20px;
-  font-weight: bold;
-  margin-top: 25px;
+  display:inline-block;
+  background:var(--light-pink);
+  color:white;
+  border-radius:20px;
+  padding:8px 18px;
+  font-weight:bold;
+  margin-top:18px;
 }
 
 .picture {
-  width: 100%;
-  height: 220px;
-  object-fit: contain;
-  border-radius: 20px;
-  background: #FFF9EF;
-  margin-top: 15px;
+  width:100%;
+  height:220px;
+  object-fit:contain;
+  border-radius:20px;
+  background:#FFF9EF;
+  margin-top:16px;
 }
 
-.english {
-  direction: ltr;
-  font-size: 25px;
-  font-weight: bold;
-  color: var(--dark);
-  margin: 20px 0 10px;
+/* صور الكلمات والكلمات أسفلها */
+
+.words-title {
+  font-size:18px;
+  margin:24px 0 13px;
 }
 
-.arabic {
-  font-size: 19px;
-  color: #849D9C;
-  margin: 0 0 20px;
+.words-grid {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.word-card {
+  width:105px;
+  min-height:120px;
+  padding:10px 7px;
+  border:2px solid var(--pale-pink);
+  border-radius:18px;
+  background:#FFF9FC;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.word-card:nth-child(3n+2) {
+  background:#F1FFFF;
+  border-color:#C9E8E7;
+}
+
+.word-card:nth-child(3n) {
+  background:#FFFBE8;
+  border-color:#F8E9A5;
+}
+
+.word-card:hover {
+  transform:translateY(-4px);
+  border-color:var(--pink);
+}
+
+.word-card img {
+  width:75px;
+  height:65px;
+  object-fit:contain;
+  display:block;
+  margin:auto;
+}
+
+.word-card .no-image {
+  width:75px;
+  height:65px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:27px;
+  color:var(--coral);
+}
+
+.word-card span {
+  display:block;
+  direction:ltr;
+  font-size:16px;
+  font-weight:bold;
+  margin-top:7px;
+  color:var(--dark);
+}
+
+/* الجملة داخل مربعات */
+
+.sentence-title {
+  font-size:18px;
+  margin:27px 0 13px;
+}
+
+.sentence-box {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+  direction:ltr;
+  padding:15px;
+  border-radius:20px;
+  background:#FFF8E8;
+}
+
+.sentence-word {
+  background:white;
+  border:2px solid var(--yellow);
+  border-radius:12px;
+  padding:11px 14px;
+  font-size:18px;
+  font-weight:bold;
+  color:var(--dark);
+  cursor:pointer;
+}
+
+.sentence-word:hover {
+  background:var(--pale-pink);
+  border-color:var(--pink);
+}
+
+.translation {
+  background:#F0FAF8;
+  border:2px solid #CBE8E4;
+  border-radius:17px;
+  padding:14px;
+  margin-top:14px;
+  font-size:17px;
+  color:var(--dark);
 }
 
 .listen {
-  background: var(--pink);
-  color: white;
-  border: 0;
-  border-radius: 18px;
-  padding: 14px 27px;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 5px 0 #D94D82;
-  transition: .2s;
-}
-
-.listen:hover {
-  background: #e9538c;
+  background:var(--pink);
+  color:white;
+  border:0;
+  border-radius:18px;
+  padding:13px 25px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:17px;
+  box-shadow:0 5px 0 #D94D82;
 }
 
 .listen:active {
-  transform: translateY(4px);
-  box-shadow: none;
+  transform:translateY(4px);
+  box-shadow:none;
 }
 
-.listen:disabled {
-  opacity: .5;
-  cursor: not-allowed;
-}
-
-/* Responsive */
-
-@media(max-width: 500px) {
-  main {
-    min-height: 520px;
-  }
-
+@media(max-width:500px) {
   .gift-button {
-    width: 245px;
-    height: 245px;
-  }
-
-  .gift-box {
-    transform: scale(.85);
+    width:245px;
+    height:245px;
   }
 
   .learning-card {
-    padding: 17px;
+    padding:15px;
   }
 
   .picture {
-    height: 175px;
+    height:175px;
   }
 
-  .english {
-    font-size: 22px;
+  .word-card {
+    width:90px;
   }
 
-  .discovered {
-    padding: 18px 10px;
+  .word-card img,
+  .word-card .no-image {
+    width:65px;
+    height:58px;
   }
 }
 </style>
@@ -447,52 +497,55 @@ main {
 </header>
 
 <main>
-
-  <div class="shape circle-pink"></div>
-  <div class="shape circle-green"></div>
-  <div class="shape circle-yellow"></div>
-  <div class="shape flower">✿</div>
-  <div class="shape star">✦</div>
+  <div class="decoration d1"></div>
+  <div class="decoration d2"></div>
+  <div class="decoration d3"></div>
+  <div class="decoration d4"></div>
 
   <div class="intro">
     <h1>يلا نكتشف!</h1>
-    <p>كل ضغطة تخبّي لنا جملة جديدة</p>
+    <p>اضغط على الصندوق واكتشف كلمات وجمل جديدة</p>
   </div>
 
   <button class="gift-button" onclick="openNextCard()">
-    <div class="gift-box">
-      <div class="ribbon"></div>
+    <div class="gift-art">
+      <div class="gift-bow"></div>
+      <div class="gift-lid"></div>
+      <div class="gift-body"></div>
     </div>
     <span class="gift-label">افتح واكتشف</span>
-    <span class="gift-subtitle">وش راح تكتشف اليوم؟</span>
+    <span class="gift-subtitle">ماذا يوجد بالداخل؟</span>
   </button>
-
 </main>
 
 <section class="discovered">
   <h2>بطاقاتي المكتشفة</h2>
   <div class="cards-row" id="history">
-    <p class="empty-message">
-      البطاقات المكتشفة بتظهر هنا
-    </p>
+    <p class="empty-message">اكتشف أول بطاقة لتظهر هنا</p>
   </div>
 </section>
 
 <div class="modal" id="modal" onclick="closeOutside(event)">
-
   <div class="learning-card">
 
     <button class="close" onclick="closeCard()">×</button>
 
     <div class="card-number" id="cardNumber"></div>
 
-    <img id="cardImage" class="picture" src="" alt="صورة البطاقة">
+    <!-- الصورة الرئيسية -->
+    <img id="cardImage" class="picture" src="" alt="الصورة الرئيسية">
 
-    <p class="english" id="englishText"></p>
+    <!-- صور الكلمات والكلمات -->
+    <h3 class="words-title">نتعلم الكلمات</h3>
+    <div class="words-grid" id="wordsGrid"></div>
 
-    <p class="arabic" id="arabicText"></p>
+    <!-- الجملة -->
+    <h3 class="sentence-title">الجملة كاملة</h3>
+    <div class="sentence-box" id="sentenceBox"></div>
 
-    <button class="listen" id="listenButton" onclick="speakSentence()">
+    <div class="translation" id="translation"></div>
+
+    <button class="listen" onclick="speakSentence()">
       استمع للجملة
     </button>
 
@@ -501,84 +554,90 @@ main {
 
 <script>
 
-/* الصور التعليمية */
-
-const imageFiles = [
-  "IMG_4409.jpeg",
-  "IMG_4410.jpeg",
-  "IMG_4411.jpeg",
-  "IMG_4412.jpeg",
-  "IMG_4413.jpeg",
-  "IMG_4414.jpeg",
-  "IMG_4415.jpeg",
-  "IMG_4416.jpeg",
-  "IMG_4417.jpeg",
-  "IMG_4418.jpeg",
-  "IMG_4419.jpeg",
-  "IMG_4420.jpeg",
-  "IMG_4421.jpeg",
-  "IMG_4422.jpeg",
-  "IMG_4423.jpeg",
-  "IMG_4424.jpeg",
-  "IMG_4425.jpeg",
-  "IMG_4426.jpeg",
-  "IMG_4427.jpeg",
-  "IMG_4428.jpeg",
-  "IMG_4429.jpeg",
-  "IMG_4430.jpeg",
-  "IMG_4431.jpeg",
-  "IMG_4432.jpeg",
-  "IMG_4433.jpeg",
-  "IMG_4434.jpeg",
-  "IMG_4435.jpeg",
-  "IMG_4436.jpeg",
-  "IMG_4437.jpeg",
-  "IMG_4438.jpeg",
-  "IMG_4439.jpeg"
-];
-
 /*
-  أضيفي الجمل والترجمات داخل القائمة لاحقًا.
-  اتركيها فارغة إذا لم تجهزي الجملة بعد.
+  أضيفي محتوى كل بطاقة هنا.
+
+  words:
+  image = صورة الكلمة
+  word = الكلمة الإنجليزية
+
+  sentence = الجملة الإنجليزية
+  translation = الترجمة العربية
 */
 
-const learningCards = imageFiles.map((image, index) => ({
-  id: index + 1,
-  image: image,
-  english: "",
-  arabic: ""
+const imageFiles = [
+"IMG_4409.jpeg",
+"IMG_4410.jpeg",
+"IMG_4411.jpeg",
+"IMG_4412.jpeg",
+"IMG_4413.jpeg",
+"IMG_4414.jpeg",
+"IMG_4415.jpeg",
+"IMG_4416.jpeg",
+"IMG_4417.jpeg",
+"IMG_4418.jpeg",
+"IMG_4419.jpeg",
+"IMG_4420.jpeg",
+"IMG_4421.jpeg",
+"IMG_4422.jpeg",
+"IMG_4423.jpeg",
+"IMG_4424.jpeg",
+"IMG_4425.jpeg",
+"IMG_4426.jpeg",
+"IMG_4427.jpeg",
+"IMG_4428.jpeg",
+"IMG_4429.jpeg",
+"IMG_4430.jpeg",
+"IMG_4431.jpeg",
+"IMG_4432.jpeg",
+"IMG_4433.jpeg",
+"IMG_4434.jpeg",
+"IMG_4435.jpeg",
+"IMG_4436.jpeg",
+"IMG_4437.jpeg",
+"IMG_4438.jpeg",
+"IMG_4439.jpeg"
+];
+
+const learningCards = imageFiles.map((image,index) => ({
+  id:index+1,
+  image:image,
+  sentence:"",
+  translation:"",
+  words:[
+    // مثال لإضافة الكلمات:
+    // { word:"Apple", image:"apple.jpeg" },
+    // { word:"Red", image:"red.jpeg" }
+  ]
 }));
 
 let discovered = [];
-let currentCard = null;
 let nextIndex = 0;
+let currentCard = null;
 
 /* فتح البطاقة التالية */
 
 function openNextCard() {
 
-  if (discovered.length === learningCards.length) {
+  if(discovered.length === learningCards.length) {
     discovered = [];
     nextIndex = 0;
     renderHistory();
   }
 
-  while (
+  while(
     nextIndex < learningCards.length &&
     discovered.includes(learningCards[nextIndex].id)
   ) {
     nextIndex++;
   }
 
-  if (nextIndex >= learningCards.length) {
+  if(nextIndex >= learningCards.length) {
     nextIndex = 0;
   }
 
-  const card = learningCards[nextIndex];
-
+  showCard(learningCards[nextIndex]);
   nextIndex++;
-
-  showCard(card);
 }
 
 /* عرض البطاقة */
@@ -587,77 +646,120 @@ function showCard(card) {
 
   currentCard = card;
 
-  document.getElementById("cardImage").src = card.image;
-
   document.getElementById("cardNumber").textContent =
     "البطاقة " + card.id;
 
-  document.getElementById("englishText").textContent =
-    card.english;
+  document.getElementById("cardImage").src = card.image;
 
-  document.getElementById("arabicText").textContent =
-    card.arabic;
+  /* عرض الكلمات */
 
-  document.getElementById("listenButton").disabled =
-    !card.english.trim();
+  const wordsGrid = document.getElementById("wordsGrid");
+  wordsGrid.innerHTML = "";
+
+  card.words.forEach(item => {
+
+    const box = document.createElement("button");
+    box.className = "word-card";
+
+    if(item.image) {
+      const img = document.createElement("img");
+      img.src = item.image;
+      img.alt = item.word;
+      box.appendChild(img);
+    } else {
+      const placeholder = document.createElement("div");
+      placeholder.className = "no-image";
+      placeholder.textContent = "＋";
+      box.appendChild(placeholder);
+    }
+
+    const word = document.createElement("span");
+    word.textContent = item.word;
+
+    box.appendChild(word);
+
+    box.onclick = () => speak(item.word);
+
+    wordsGrid.appendChild(box);
+  });
+
+  /* عرض الجملة في مربعات منفصلة */
+
+  const sentenceBox = document.getElementById("sentenceBox");
+  sentenceBox.innerHTML = "";
+
+  if(card.sentence.trim()) {
+
+    card.sentence.trim().split(/\s+/).forEach(word => {
+
+      const wordBox = document.createElement("button");
+      wordBox.className = "sentence-word";
+      wordBox.textContent = word;
+
+      wordBox.onclick = () => speak(word);
+
+      sentenceBox.appendChild(wordBox);
+    });
+
+  } else {
+    sentenceBox.textContent = "ستضاف الجملة هنا";
+  }
+
+  document.getElementById("translation").textContent =
+    card.translation || "ستضاف الترجمة العربية هنا";
 
   document.getElementById("modal").classList.add("show");
 
-  if (!discovered.includes(card.id)) {
+  if(!discovered.includes(card.id)) {
     discovered.push(card.id);
     renderHistory();
   }
 }
 
-/* إغلاق البطاقة */
+/* الصوت */
 
-function closeCard() {
+function speak(text) {
 
-  document.getElementById("modal").classList.remove("show");
-
-  window.speechSynthesis.cancel();
-}
-
-function closeOutside(event) {
-
-  if (event.target.id === "modal") {
-    closeCard();
-  }
-}
-
-/* تشغيل الصوت */
-
-function speakSentence() {
-
-  if (!currentCard || !currentCard.english.trim()) {
-    return;
-  }
+  if(!text) return;
 
   window.speechSynthesis.cancel();
 
-  const speech = new SpeechSynthesisUtterance(
-    currentCard.english
-  );
-
+  const speech = new SpeechSynthesisUtterance(text);
   speech.lang = "en-US";
   speech.rate = 0.85;
 
   window.speechSynthesis.speak(speech);
 }
 
-/* عرض البطاقات المكتشفة */
+function speakSentence() {
+  if(currentCard) {
+    speak(currentCard.sentence);
+  }
+}
+
+/* إغلاق البطاقة */
+
+function closeCard() {
+  document.getElementById("modal").classList.remove("show");
+  window.speechSynthesis.cancel();
+}
+
+function closeOutside(event) {
+  if(event.target.id === "modal") {
+    closeCard();
+  }
+}
+
+/* البطاقات المكتشفة */
 
 function renderHistory() {
 
   const history = document.getElementById("history");
-
   history.innerHTML = "";
 
-  if (discovered.length === 0) {
-
+  if(discovered.length === 0) {
     history.innerHTML =
-      '<p class="empty-message">البطاقات المكتشفة بتظهر هنا</p>';
-
+      '<p class="empty-message">اكتشف أول بطاقة لتظهر هنا</p>';
     return;
   }
 
@@ -670,7 +772,7 @@ function renderHistory() {
 
     const img = document.createElement("img");
     img.src = card.image;
-    img.alt = "البطاقة " + id;
+    img.alt = "";
 
     const label = document.createElement("p");
     label.textContent = "بطاقة " + id;
@@ -681,7 +783,6 @@ function renderHistory() {
     button.onclick = () => showCard(card);
 
     history.appendChild(button);
-
   });
 }
 
