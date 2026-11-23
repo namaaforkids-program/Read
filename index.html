@@ -18,9 +18,7 @@
   --dark:#426B6A;
 }
 
-* {
-  box-sizing:border-box;
-}
+* { box-sizing:border-box; }
 
 body {
   margin:0;
@@ -34,8 +32,6 @@ body {
   overflow-x:hidden;
 }
 
-/* الشعار */
-
 header {
   text-align:center;
   padding:8px;
@@ -48,8 +44,6 @@ header {
   height:75px;
   object-fit:contain;
 }
-
-/* خلفية طفولية */
 
 .background-decor {
   position:fixed;
@@ -90,22 +84,9 @@ header {
   right:18px;
 }
 
-.cloud.one {
-  top:17%;
-  left:5%;
-}
-
-.cloud.two {
-  top:35%;
-  right:4%;
-  transform:scale(.8);
-}
-
-.cloud.three {
-  bottom:14%;
-  left:13%;
-  transform:scale(.7);
-}
+.cloud.one { top:17%; left:5%; }
+.cloud.two { top:35%; right:4%; transform:scale(.8); }
+.cloud.three { bottom:14%; left:13%; transform:scale(.7); }
 
 .star {
   position:absolute;
@@ -134,8 +115,6 @@ header {
   z-index:0;
 }
 
-/* العنوان */
-
 .intro {
   text-align:center;
   position:relative;
@@ -155,8 +134,6 @@ header {
   font-size:14px;
 }
 
-/* منطقة الكتاب */
-
 .book-area {
   width:100%;
   min-height:calc(100vh - 140px);
@@ -169,8 +146,6 @@ header {
   z-index:2;
 }
 
-/* الكتاب */
-
 .book {
   width:min(1050px,96vw);
   height:min(660px,72vh);
@@ -179,8 +154,6 @@ header {
   perspective:1800px;
   filter:drop-shadow(0 17px 13px #547b702e);
 }
-
-/* الغلاف */
 
 .cover {
   position:absolute;
@@ -247,8 +220,6 @@ header {
   position:relative;
 }
 
-/* صفحات الكتاب */
-
 .spread {
   position:absolute;
   inset:0;
@@ -262,8 +233,6 @@ header {
   overflow:hidden;
 }
 
-/* خط منتصف الكتاب */
-
 .spread::after {
   content:"";
   position:absolute;
@@ -276,8 +245,6 @@ header {
   z-index:4;
   pointer-events:none;
 }
-
-/* كل صفحة */
 
 .book-page {
   background:#FFFEF8;
@@ -295,15 +262,12 @@ header {
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  background:
-    linear-gradient(135deg,#FFFDF4,#FFF8E9);
+  background:linear-gradient(135deg,#FFFDF4,#FFF8E9);
 }
 
 .content-page {
   background:#FFFEF8;
 }
-
-/* إطار الصورة */
 
 .picture-frame {
   width:100%;
@@ -332,8 +296,6 @@ header {
   font-weight:bold;
 }
 
-/* رقم الصفحة */
-
 .page-number {
   display:inline-block;
   background:var(--light-pink);
@@ -344,29 +306,34 @@ header {
   margin-bottom:15px;
 }
 
-/* الكلمات */
-
 .section-title {
   font-size:19px;
   margin:8px 0 13px;
   color:#438F8E;
 }
 
+/* بطاقات الكلمات بالعربي والإنجليزي */
+
 .words-grid {
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:10px;
 }
 
 .word-card {
   min-width:0;
-  min-height:105px;
-  padding:8px 4px;
+  min-height:85px;
+  padding:12px 7px;
   border:2px solid var(--pale-pink);
   border-radius:16px;
   background:#FFF7FB;
   cursor:pointer;
   transition:.2s;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
 }
 
 .word-card:nth-child(3n+2) {
@@ -384,29 +351,17 @@ header {
   border-color:var(--pink);
 }
 
-.word-card img,
-.word-placeholder {
-  width:65px;
-  height:55px;
-  object-fit:contain;
-  display:block;
-  margin:auto;
-}
-
-.word-placeholder {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:var(--coral);
-  font-size:25px;
-}
-
-.word-card span {
-  display:block;
-  direction:ltr;
-  font-size:14px;
+.word-arabic {
+  font-size:16px;
   font-weight:bold;
-  margin-top:5px;
+  color:#438F8E;
+}
+
+.word-english {
+  direction:ltr;
+  font-size:17px;
+  font-weight:bold;
+  color:var(--dark);
 }
 
 /* الجملة */
@@ -444,8 +399,6 @@ header {
   border-color:var(--pink);
 }
 
-/* الترجمة */
-
 .translation {
   background:#EFF9F7;
   border:2px solid #CBE8E4;
@@ -455,8 +408,6 @@ header {
   font-size:16px;
   text-align:center;
 }
-
-/* زر الصوت */
 
 .listen {
   width:100%;
@@ -471,8 +422,6 @@ header {
   margin-top:13px;
   box-shadow:0 4px 0 #D94D82;
 }
-
-/* التنقل */
 
 .controls {
   display:flex;
@@ -527,7 +476,6 @@ header {
 /* الجوال */
 
 @media(max-width:650px) {
-
   .book {
     height:680px;
     min-height:0;
@@ -568,17 +516,16 @@ header {
   }
 
   .word-card {
-    min-height:85px;
+    min-height:75px;
+    padding:8px 3px;
   }
 
-  .word-card img,
-  .word-placeholder {
-    width:45px;
-    height:42px;
+  .word-arabic {
+    font-size:13px;
   }
 
-  .word-card span {
-    font-size:12px;
+  .word-english {
+    font-size:14px;
   }
 
   .sentence-word {
@@ -605,15 +552,13 @@ header {
   }
 
   .word-card {
-    min-height:78px;
+    min-height:70px;
   }
 }
 </style>
 </head>
 
 <body>
-
-<!-- خلفية اللعبة -->
 
 <div class="background-decor">
   <div class="cloud one"></div>
@@ -628,8 +573,6 @@ header {
   <div class="ground"></div>
 </div>
 
-<!-- الشعار -->
-
 <header>
   <img src="IMG_3829.png" class="logo" alt="شعار نماء">
 </header>
@@ -643,16 +586,12 @@ header {
 
   <div class="book">
 
-    <!-- الغلاف -->
-
     <div class="cover" id="cover" onclick="openBook()">
       <div class="cover-art">📖</div>
       <h2>كتاب نماء</h2>
       <p>رحلتنا الممتعة لتعلم اللغة الإنجليزية</p>
       <button class="cover-button">هيا نبدأ!</button>
     </div>
-
-    <!-- صفحتا الكتاب -->
 
     <div class="spread">
 
@@ -736,19 +675,24 @@ header {
 <script>
 
 /*
-================================================
-بيانات صفحات الكتاب
-
-كل عنصر يمثل صفحتين متقابلتين:
-الصورة في صفحة، والكلمات والجملة في الصفحة الأخرى.
-
-أضيفي الجمل والكلمات لكل صورة بشكل مستقل.
-================================================
+كل عنصر يمثل صفحة تعليمية.
+الكلمات تكتب بالعربي والإنجليزي.
+الصورة الرئيسية في صفحة مستقلة.
 */
 
 const learningCards = [
 
-  {id:1,image:"IMG_4409.jpeg",sentence:"",translation:"",words:[]},
+  {
+    id:1,
+    image:"IMG_4409.jpeg",
+    sentence:"The milk is white.",
+    translation:"الحليب أبيض.",
+    words:[
+      {word:"Milk",arabic:"الحليب"},
+      {word:"White",arabic:"أبيض"}
+    ]
+  },
+
   {id:2,image:"IMG_4410.jpeg",sentence:"",translation:"",words:[]},
   {id:3,image:"IMG_4411.jpeg",sentence:"",translation:"",words:[]},
   {id:4,image:"IMG_4412.jpeg",sentence:"",translation:"",words:[]},
@@ -810,7 +754,6 @@ function showPage() {
     currentPage === 0;
 
   renderWords(card);
-
   renderSentence(card);
 
   document.getElementById("translation").textContent =
@@ -819,7 +762,7 @@ function showPage() {
 }
 
 
-/* عرض الكلمات */
+/* عرض الكلمات بالعربي والإنجليزي */
 
 function renderWords(card) {
 
@@ -828,47 +771,26 @@ function renderWords(card) {
   grid.innerHTML = "";
 
   if(card.words.length === 0) {
-
     grid.innerHTML =
       '<p style="font-size:13px;color:#8BA3A2">ستضاف الكلمات هنا</p>';
-
     return;
-
   }
 
   card.words.forEach(item => {
 
     const button = document.createElement("button");
-
     button.className = "word-card";
 
-    if(item.image) {
+    const arabic = document.createElement("span");
+    arabic.className = "word-arabic";
+    arabic.textContent = item.arabic;
 
-      const img = document.createElement("img");
+    const english = document.createElement("span");
+    english.className = "word-english";
+    english.textContent = item.word;
 
-      img.src = item.image;
-
-      img.alt = item.word;
-
-      button.appendChild(img);
-
-    } else {
-
-      const placeholder = document.createElement("div");
-
-      placeholder.className = "word-placeholder";
-
-      placeholder.textContent = "＋";
-
-      button.appendChild(placeholder);
-
-    }
-
-    const word = document.createElement("span");
-
-    word.textContent = item.word;
-
-    button.appendChild(word);
+    button.appendChild(arabic);
+    button.appendChild(english);
 
     button.onclick = () => speak(item.word);
 
@@ -888,11 +810,8 @@ function renderSentence(card) {
   box.innerHTML = "";
 
   if(!card.sentence.trim()) {
-
     box.textContent = "ستضاف الجملة هنا";
-
     return;
-
   }
 
   card.sentence.trim().split(/\s+/).forEach(word => {
@@ -900,9 +819,7 @@ function renderSentence(card) {
     const button = document.createElement("button");
 
     button.className = "sentence-word";
-
     button.textContent = word;
-
     button.onclick = () => speak(word);
 
     box.appendChild(button);
@@ -919,7 +836,6 @@ function openBook() {
   bookOpened = true;
 
   document.getElementById("cover").classList.add("open");
-
   document.getElementById("backButton").classList.add("show");
 
   showPage();
@@ -934,11 +850,8 @@ function nextPage() {
   if(!bookOpened) return;
 
   if(currentPage < learningCards.length - 1) {
-
     currentPage++;
-
     showPage();
-
   }
 
 }
@@ -951,11 +864,8 @@ function prevPage() {
   if(!bookOpened) return;
 
   if(currentPage > 0) {
-
     currentPage--;
-
     showPage();
-
   }
 
 }
@@ -966,13 +876,11 @@ function prevPage() {
 function closeBook() {
 
   bookOpened = false;
-
   currentPage = 0;
 
   window.speechSynthesis.cancel();
 
   document.getElementById("cover").classList.remove("open");
-
   document.getElementById("backButton").classList.remove("show");
 
   showPage();
@@ -980,7 +888,7 @@ function closeBook() {
 }
 
 
-/* الصوت */
+/* نطق الكلمة الإنجليزية */
 
 function speak(text) {
 
@@ -991,7 +899,6 @@ function speak(text) {
   const speech = new SpeechSynthesisUtterance(text);
 
   speech.lang = "en-US";
-
   speech.rate = 0.85;
 
   window.speechSynthesis.speak(speech);
@@ -999,16 +906,14 @@ function speak(text) {
 }
 
 
-/* الاستماع للجملة */
+/* الاستماع للجملة كاملة */
 
 function speakSentence() {
 
   const card = learningCards[currentPage];
 
   if(card && card.sentence) {
-
     speak(card.sentence);
-
   }
 
 }
