@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>رِواق | لعبة الجمل</title>
+<title>رِواق</title>
 
 <style>
 :root {
@@ -12,9 +12,10 @@
   --coral: #F5A89A;
   --yellow: #FFF2A5;
   --pink: #FA699E;
-  --light-pink: #FFE7F0;
+  --light-pink: #FF9FC7;
+  --pale-pink: #FFE7F0;
   --green: #4ADD82;
-  --dark: #355B5B;
+  --dark: #426B6A;
 }
 
 * {
@@ -24,93 +25,130 @@
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: "Tahoma", sans-serif;
-  background: var(--cream);
+  font-family: "Trebuchet MS", Tahoma, sans-serif;
+  background:
+    radial-gradient(circle at 10% 15%, #ffffff 0 5px, transparent 6px),
+    radial-gradient(circle at 90% 30%, #ffffff 0 6px, transparent 7px),
+    var(--cream);
   color: var(--dark);
   overflow-x: hidden;
 }
 
+/* Header */
+
 header {
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 22px;
+  padding: 18px 15px 5px;
 }
 
 .logo {
   width: 115px;
-  height: auto;
+  height: 75px;
   object-fit: contain;
 }
 
+/* Main */
+
 main {
-  min-height: 65vh;
+  min-height: 570px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  flex-direction: column;
   position: relative;
+  padding: 25px 15px;
+  overflow: hidden;
 }
 
 .intro {
   text-align: center;
-  margin-bottom: 28px;
+  margin-bottom: 35px;
+  z-index: 2;
 }
 
 .intro h1 {
-  font-size: clamp(25px, 5vw, 38px);
-  margin: 0 0 10px;
+  font-size: clamp(28px, 5vw, 42px);
   color: var(--dark);
+  margin: 0 0 12px;
+  font-weight: 900;
 }
 
 .intro p {
+  color: #779594;
   font-size: 17px;
   margin: 0;
-  color: #658181;
 }
 
-.decor {
+/* Decorations */
+
+.shape {
   position: absolute;
-  border-radius: 50%;
-  opacity: .8;
   pointer-events: none;
+  z-index: 0;
 }
 
-.decor.one {
+.circle-pink {
   width: 75px;
   height: 75px;
+  border-radius: 50%;
   background: var(--pink);
-  top: 12%;
+  top: 18%;
   right: 9%;
+  opacity: .8;
 }
 
-.decor.two {
-  width: 48px;
-  height: 48px;
+.circle-green {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
   background: var(--green);
-  bottom: 16%;
+  bottom: 15%;
   left: 10%;
 }
 
-.decor.three {
+.circle-yellow {
   width: 35px;
   height: 35px;
+  border-radius: 50%;
   background: var(--yellow);
-  top: 25%;
-  left: 15%;
+  top: 30%;
+  left: 16%;
 }
 
+.flower {
+  font-size: 38px;
+  color: var(--coral);
+  top: 12%;
+  left: 9%;
+}
+
+.star {
+  font-size: 40px;
+  color: var(--pink);
+  bottom: 18%;
+  right: 12%;
+}
+
+/* Main gift */
+
 .gift-button {
-  width: min(300px, 75vw);
-  aspect-ratio: 1;
-  border: 8px solid white;
+  width: min(280px, 72vw);
+  height: 280px;
+  border: 9px solid white;
   border-radius: 42px;
   background: var(--teal);
-  box-shadow: 0 12px 0 #438F8E, 0 20px 30px #00000018;
+  box-shadow:
+    0 12px 0 #438F8E,
+    0 20px 35px #537c7c30;
   cursor: pointer;
   position: relative;
-  transition: .25s;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform .25s;
   animation: float 3s ease-in-out infinite;
 }
 
@@ -119,89 +157,151 @@ main {
 }
 
 .gift-button:active {
-  transform: scale(.95);
+  transform: scale(.94);
 }
 
-.gift-icon {
-  font-size: 105px;
-  display: block;
-  filter: drop-shadow(0 5px 2px #00000015);
+.gift-box {
+  width: 130px;
+  height: 105px;
+  background: var(--pink);
+  border-radius: 13px;
+  position: relative;
+  margin-top: 20px;
+  box-shadow: 0 7px 0 #d94d82;
+}
+
+.gift-box::before {
+  content: "";
+  position: absolute;
+  width: 23px;
+  height: 100%;
+  background: var(--yellow);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.gift-box::after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 24px;
+  background: var(--coral);
+  border-radius: 9px;
+  top: -15px;
+  left: -10px;
+}
+
+.ribbon {
+  position: absolute;
+  width: 42px;
+  height: 30px;
+  border: 9px solid var(--yellow);
+  border-radius: 50%;
+  top: -42px;
+  left: 20px;
+  transform: rotate(-25deg);
+}
+
+.ribbon::after {
+  content: "";
+  position: absolute;
+  width: 42px;
+  height: 30px;
+  border: 9px solid var(--yellow);
+  border-radius: 50%;
+  left: 28px;
+  top: -9px;
+  transform: rotate(50deg);
 }
 
 .gift-label {
-  display: block;
+  color: white;
   font-size: 22px;
   font-weight: bold;
-  color: white;
+  margin-top: 35px;
+}
+
+.gift-subtitle {
+  color: #E8FFFF;
+  font-size: 13px;
   margin-top: 8px;
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-9px); }
 }
 
+/* Discovered cards */
+
 .discovered {
-  width: min(900px, 92%);
-  margin: 20px auto 50px;
+  width: min(950px, 94%);
+  margin: 0 auto 55px;
+  padding: 25px;
+  background: #ffffff8c;
+  border-radius: 30px;
+  border: 3px solid white;
   text-align: center;
 }
 
 .discovered h2 {
-  font-size: 22px;
-  margin-bottom: 18px;
+  font-size: 24px;
+  margin: 0 0 20px;
 }
 
 .cards-row {
   display: flex;
-  gap: 14px;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 14px;
 }
 
 .history-card {
   width: 115px;
-  min-height: 110px;
+  min-height: 120px;
   background: white;
-  border: 3px solid var(--light-pink);
+  border: 3px solid var(--pale-pink);
   border-radius: 20px;
-  padding: 12px;
+  padding: 10px;
   cursor: pointer;
   transition: .2s;
+  box-shadow: 0 5px 0 #f5d4e1;
 }
 
 .history-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
   border-color: var(--pink);
 }
 
 .history-card img {
-  width: 65px;
-  height: 55px;
+  width: 75px;
+  height: 65px;
   object-fit: contain;
+  border-radius: 10px;
 }
 
 .history-card p {
-  font-size: 12px;
-  margin: 6px 0 0;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 7px 0 0;
 }
 
 .empty-message {
-  color: #789090;
-  font-size: 14px;
+  color: #8BA3A2;
+  font-size: 15px;
 }
 
-/* البطاقة التعليمية */
+/* Learning card */
 
 .modal {
   display: none;
   position: fixed;
   inset: 0;
-  background: #24444499;
+  background: #345959a8;
   z-index: 10;
-  justify-content: center;
   align-items: center;
-  padding: 18px;
+  justify-content: center;
+  padding: 15px;
 }
 
 .modal.show {
@@ -209,43 +309,59 @@ main {
 }
 
 .learning-card {
-  background: white;
   width: min(520px, 100%);
-  border-radius: 30px;
-  padding: 25px;
-  text-align: center;
-  position: relative;
+  background: white;
   border: 7px solid var(--yellow);
+  border-radius: 32px;
+  padding: 25px;
+  position: relative;
+  text-align: center;
   box-shadow: 0 15px 40px #00000025;
-  animation: appear .3s ease;
+  animation: pop .3s ease;
 }
 
-@keyframes appear {
-  from { transform: scale(.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+@keyframes pop {
+  from {
+    transform: scale(.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .close {
   position: absolute;
   top: 12px;
-  left: 15px;
-  width: 38px;
-  height: 38px;
-  border: none;
+  left: 13px;
+  width: 39px;
+  height: 39px;
+  border: 0;
   border-radius: 50%;
-  background: var(--light-pink);
+  background: var(--pale-pink);
   color: var(--dark);
-  font-size: 22px;
+  font-size: 25px;
   cursor: pointer;
+}
+
+.card-number {
+  background: var(--light-pink);
+  color: white;
+  display: inline-block;
+  padding: 7px 18px;
+  border-radius: 20px;
+  font-weight: bold;
+  margin-top: 25px;
 }
 
 .picture {
   width: 100%;
-  height: 210px;
+  height: 220px;
   object-fit: contain;
   border-radius: 20px;
   background: #FFF9EF;
-  margin-top: 25px;
+  margin-top: 15px;
 }
 
 .english {
@@ -258,20 +374,25 @@ main {
 
 .arabic {
   font-size: 19px;
-  color: #789090;
+  color: #849D9C;
   margin: 0 0 20px;
 }
 
 .listen {
   background: var(--pink);
   color: white;
-  border: none;
+  border: 0;
   border-radius: 18px;
-  padding: 13px 25px;
+  padding: 14px 27px;
   font-size: 17px;
   font-weight: bold;
   cursor: pointer;
   box-shadow: 0 5px 0 #D94D82;
+  transition: .2s;
+}
+
+.listen:hover {
+  background: #e9538c;
 }
 
 .listen:active {
@@ -279,21 +400,41 @@ main {
   box-shadow: none;
 }
 
-@media (max-width: 500px) {
-  .gift-button {
-    width: 250px;
+.listen:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+
+@media(max-width: 500px) {
+  main {
+    min-height: 520px;
   }
 
-  .gift-icon {
-    font-size: 85px;
+  .gift-button {
+    width: 245px;
+    height: 245px;
+  }
+
+  .gift-box {
+    transform: scale(.85);
   }
 
   .learning-card {
-    padding: 18px;
+    padding: 17px;
   }
 
   .picture {
-    height: 170px;
+    height: 175px;
+  }
+
+  .english {
+    font-size: 22px;
+  }
+
+  .discovered {
+    padding: 18px 10px;
   }
 }
 </style>
@@ -302,102 +443,163 @@ main {
 <body>
 
 <header>
-  <!-- ضعي شعار رِواق في نفس مجلد الملف باسم IMG_3829.png -->
-  <img class="logo" src="IMG_3829.png" alt="شعار رِواق">
+  <img class="logo" src="IMG_3829.png" alt="رِواق">
 </header>
 
 <main>
-  <div class="decor one"></div>
-  <div class="decor two"></div>
-  <div class="decor three"></div>
+
+  <div class="shape circle-pink"></div>
+  <div class="shape circle-green"></div>
+  <div class="shape circle-yellow"></div>
+  <div class="shape flower">✿</div>
+  <div class="shape star">✦</div>
 
   <div class="intro">
     <h1>يلا نكتشف!</h1>
-    <p>اضغط على الصندوق واكتشف جملة جديدة</p>
+    <p>كل ضغطة تخبّي لنا جملة جديدة</p>
   </div>
 
-  <button class="gift-button" onclick="openRandomCard()">
-    <span class="gift-icon">🎁</span>
-    <span class="gift-label">اضغط واكتشف</span>
+  <button class="gift-button" onclick="openNextCard()">
+    <div class="gift-box">
+      <div class="ribbon"></div>
+    </div>
+    <span class="gift-label">افتح واكتشف</span>
+    <span class="gift-subtitle">وش راح تكتشف اليوم؟</span>
   </button>
+
 </main>
 
 <section class="discovered">
-  <h2>البطاقات المكتشفة</h2>
+  <h2>بطاقاتي المكتشفة</h2>
   <div class="cards-row" id="history">
-    <p class="empty-message">البطاقات التي تكتشفها ستظهر هنا</p>
+    <p class="empty-message">
+      البطاقات المكتشفة بتظهر هنا
+    </p>
   </div>
 </section>
 
 <div class="modal" id="modal" onclick="closeOutside(event)">
+
   <div class="learning-card">
+
     <button class="close" onclick="closeCard()">×</button>
 
-    <img id="cardImage" class="picture" src="" alt="صورة تعليمية">
+    <div class="card-number" id="cardNumber"></div>
+
+    <img id="cardImage" class="picture" src="" alt="صورة البطاقة">
 
     <p class="english" id="englishText"></p>
+
     <p class="arabic" id="arabicText"></p>
 
-    <button class="listen" onclick="speakSentence()">
+    <button class="listen" id="listenButton" onclick="speakSentence()">
       استمع للجملة
     </button>
+
   </div>
 </div>
 
 <script>
 
+/* الصور التعليمية */
+
+const imageFiles = [
+  "IMG_4409.jpeg",
+  "IMG_4410.jpeg",
+  "IMG_4411.jpeg",
+  "IMG_4412.jpeg",
+  "IMG_4413.jpeg",
+  "IMG_4414.jpeg",
+  "IMG_4415.jpeg",
+  "IMG_4416.jpeg",
+  "IMG_4417.jpeg",
+  "IMG_4418.jpeg",
+  "IMG_4419.jpeg",
+  "IMG_4420.jpeg",
+  "IMG_4421.jpeg",
+  "IMG_4422.jpeg",
+  "IMG_4423.jpeg",
+  "IMG_4424.jpeg",
+  "IMG_4425.jpeg",
+  "IMG_4426.jpeg",
+  "IMG_4427.jpeg",
+  "IMG_4428.jpeg",
+  "IMG_4429.jpeg",
+  "IMG_4430.jpeg",
+  "IMG_4431.jpeg",
+  "IMG_4432.jpeg",
+  "IMG_4433.jpeg",
+  "IMG_4434.jpeg",
+  "IMG_4435.jpeg",
+  "IMG_4436.jpeg",
+  "IMG_4437.jpeg",
+  "IMG_4438.jpeg",
+  "IMG_4439.jpeg"
+];
+
 /*
-  أضيفي جملك هنا لاحقًا.
-  image: اسم الصورة الموجودة بجانب ملف HTML.
-  english: الجملة الإنجليزية.
-  arabic: الترجمة العربية.
+  أضيفي الجمل والترجمات داخل القائمة لاحقًا.
+  اتركيها فارغة إذا لم تجهزي الجملة بعد.
 */
 
-const learningCards = [
-  {
-    id: 1,
-    image: "image1.jpeg",
-    english: "The tea is hot.",
-    arabic: "الشاي ساخن."
-  },
-  {
-    id: 2,
-    image: "image2.jpeg",
-    english: "The ice is melting.",
-    arabic: "الثلج يذوب."
-  }
-];
+const learningCards = imageFiles.map((image, index) => ({
+  id: index + 1,
+  image: image,
+  english: "",
+  arabic: ""
+}));
 
 let discovered = [];
 let currentCard = null;
+let nextIndex = 0;
 
-function openRandomCard() {
-  const remaining = learningCards.filter(
-    card => !discovered.includes(card.id)
-  );
+/* فتح البطاقة التالية */
 
-  if (remaining.length === 0) {
+function openNextCard() {
+
+  if (discovered.length === learningCards.length) {
     discovered = [];
+    nextIndex = 0;
     renderHistory();
   }
 
-  const available = learningCards.filter(
-    card => !discovered.includes(card.id)
-  );
+  while (
+    nextIndex < learningCards.length &&
+    discovered.includes(learningCards[nextIndex].id)
+  ) {
+    nextIndex++;
+  }
 
-  const card = available[
-    Math.floor(Math.random() * available.length)
-  ];
+  if (nextIndex >= learningCards.length) {
+    nextIndex = 0;
+  }
+
+  const card = learningCards[nextIndex];
+
+  nextIndex++;
 
   showCard(card);
 }
 
+/* عرض البطاقة */
+
 function showCard(card) {
+
   currentCard = card;
 
   document.getElementById("cardImage").src = card.image;
-  document.getElementById("englishText").textContent = card.english;
-  document.getElementById("arabicText").textContent = card.arabic;
+
+  document.getElementById("cardNumber").textContent =
+    "البطاقة " + card.id;
+
+  document.getElementById("englishText").textContent =
+    card.english;
+
+  document.getElementById("arabicText").textContent =
+    card.arabic;
+
+  document.getElementById("listenButton").disabled =
+    !card.english.trim();
 
   document.getElementById("modal").classList.add("show");
 
@@ -407,19 +609,29 @@ function showCard(card) {
   }
 }
 
+/* إغلاق البطاقة */
+
 function closeCard() {
+
   document.getElementById("modal").classList.remove("show");
+
   window.speechSynthesis.cancel();
 }
 
 function closeOutside(event) {
+
   if (event.target.id === "modal") {
     closeCard();
   }
 }
 
+/* تشغيل الصوت */
+
 function speakSentence() {
-  if (!currentCard) return;
+
+  if (!currentCard || !currentCard.english.trim()) {
+    return;
+  }
 
   window.speechSynthesis.cancel();
 
@@ -433,17 +645,24 @@ function speakSentence() {
   window.speechSynthesis.speak(speech);
 }
 
+/* عرض البطاقات المكتشفة */
+
 function renderHistory() {
+
   const history = document.getElementById("history");
+
   history.innerHTML = "";
 
   if (discovered.length === 0) {
+
     history.innerHTML =
-      '<p class="empty-message">البطاقات التي تكتشفها ستظهر هنا</p>';
+      '<p class="empty-message">البطاقات المكتشفة بتظهر هنا</p>';
+
     return;
   }
 
   discovered.forEach(id => {
+
     const card = learningCards.find(item => item.id === id);
 
     const button = document.createElement("button");
@@ -451,7 +670,7 @@ function renderHistory() {
 
     const img = document.createElement("img");
     img.src = card.image;
-    img.alt = "";
+    img.alt = "البطاقة " + id;
 
     const label = document.createElement("p");
     label.textContent = "بطاقة " + id;
@@ -462,6 +681,7 @@ function renderHistory() {
     button.onclick = () => showCard(card);
 
     history.appendChild(button);
+
   });
 }
 
