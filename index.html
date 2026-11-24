@@ -289,6 +289,14 @@ header {
   object-fit:contain;
 }
 
+.image-placeholder {
+  display:none;
+  text-align:center;
+  color:#91B5B0;
+  font-size:17px;
+  padding:20px;
+}
+
 .image-caption {
   margin-top:10px;
   font-size:18px;
@@ -623,6 +631,9 @@ header {
             src="IMG_4409.jpeg"
             alt="الصورة التعليمية"
           >
+          <div class="image-placeholder" id="imagePlaceholder">
+            الصورة غير متوفرة
+          </div>
         </div>
 
         <div class="image-caption">شاهد الصورة واكتشف!</div>
@@ -668,6 +679,12 @@ header {
 
 <script>
 
+/* مسار الصور:
+   إذا كانت الصور بجانب ملف HTML اتركيه فارغًا.
+   إذا كانت الصور داخل مجلد اسمه images اكتبي: "images/"
+*/
+const IMAGE_FOLDER = "";
+
 /* بيانات صفحات الكتاب */
 
 const learningCards = [
@@ -684,7 +701,6 @@ const learningCards = [
       {word:"White",arabic:"أبيض"}
     ]
   },
-
   {
     id:2,
     image:"IMG_4410.jpeg",
@@ -695,7 +711,6 @@ const learningCards = [
       {word:"Green",arabic:"أخضر"}
     ]
   },
-
   {
     id:3,
     image:"IMG_4411.jpeg",
@@ -706,7 +721,6 @@ const learningCards = [
       {word:"Blue",arabic:"أزرق"}
     ]
   },
-
   {
     id:4,
     image:"IMG_4412.jpeg",
@@ -717,7 +731,6 @@ const learningCards = [
       {word:"Black",arabic:"أسود"}
     ]
   },
-
   {
     id:5,
     image:"IMG_4413.jpeg",
@@ -728,7 +741,6 @@ const learningCards = [
       {word:"Yellow",arabic:"أصفر"}
     ]
   },
-
   {
     id:6,
     image:"IMG_4414.jpeg",
@@ -739,7 +751,6 @@ const learningCards = [
       {word:"Red",arabic:"أحمر"}
     ]
   },
-
   {
     id:7,
     image:"IMG_4415.jpeg",
@@ -750,7 +761,6 @@ const learningCards = [
       {word:"Orange",arabic:"برتقالي"}
     ]
   },
-
   {
     id:8,
     image:"IMG_4416.jpeg",
@@ -761,7 +771,6 @@ const learningCards = [
       {word:"Pink",arabic:"وردي"}
     ]
   },
-
   {
     id:9,
     image:"IMG_4417.jpeg",
@@ -772,7 +781,6 @@ const learningCards = [
       {word:"Blue",arabic:"أزرق"}
     ]
   },
-
   {
     id:10,
     image:"IMG_4418.jpeg",
@@ -783,7 +791,6 @@ const learningCards = [
       {word:"Purple",arabic:"بنفسجي"}
     ]
   },
-
   {
     id:11,
     image:"IMG_4419.jpeg",
@@ -794,7 +801,6 @@ const learningCards = [
       {word:"Big",arabic:"كبير"}
     ]
   },
-
   {
     id:12,
     image:"IMG_4420.jpeg",
@@ -805,7 +811,6 @@ const learningCards = [
       {word:"Small",arabic:"صغير"}
     ]
   },
-
   {
     id:13,
     image:"IMG_4421.jpeg",
@@ -816,7 +821,6 @@ const learningCards = [
       {word:"Huge",arabic:"ضخم"}
     ]
   },
-
   {
     id:14,
     image:"IMG_4422.jpeg",
@@ -827,7 +831,6 @@ const learningCards = [
       {word:"High",arabic:"مرتفع"}
     ]
   },
-
   {
     id:15,
     image:"IMG_4423.jpeg",
@@ -838,7 +841,6 @@ const learningCards = [
       {word:"Tall",arabic:"طويل"}
     ]
   },
-
   {
     id:16,
     image:"IMG_4424.jpeg",
@@ -849,7 +851,6 @@ const learningCards = [
       {word:"Wide",arabic:"واسع"}
     ]
   },
-
   {
     id:17,
     image:"IMG_4425.jpeg",
@@ -860,7 +861,6 @@ const learningCards = [
       {word:"Short",arabic:"قصير"}
     ]
   },
-
   {
     id:18,
     image:"IMG_4426.jpeg",
@@ -871,7 +871,6 @@ const learningCards = [
       {word:"Heavy",arabic:"ثقيل"}
     ]
   },
-
   {
     id:19,
     image:"IMG_4427.jpeg",
@@ -882,7 +881,6 @@ const learningCards = [
       {word:"Light",arabic:"خفيف"}
     ]
   },
-
   {
     id:20,
     image:"IMG_4428.jpeg",
@@ -893,7 +891,6 @@ const learningCards = [
       {word:"Round",arabic:"مستدير"}
     ]
   },
-
   {
     id:21,
     image:"IMG_4429.jpeg",
@@ -904,7 +901,6 @@ const learningCards = [
       {word:"Open",arabic:"مفتوح"}
     ]
   },
-
   {
     id:22,
     image:"IMG_4430.jpeg",
@@ -915,7 +911,6 @@ const learningCards = [
       {word:"On",arabic:"مضيء"}
     ]
   },
-
   {
     id:23,
     image:"IMG_4431.jpeg",
@@ -926,7 +921,6 @@ const learningCards = [
       {word:"Off",arabic:"مطفأ"}
     ]
   },
-
   {
     id:24,
     image:"IMG_4432.jpeg",
@@ -973,7 +967,6 @@ const learningCards = [
       {word:"Torn",arabic:"ممزق"}
     ]
   },
-
   {
     id:43,
     image:"IMG_4443.jpeg",
@@ -984,7 +977,6 @@ const learningCards = [
       {word:"Hard",arabic:"صلب"}
     ]
   },
-
   {
     id:44,
     image:"IMG_4444.jpeg",
@@ -995,7 +987,6 @@ const learningCards = [
       {word:"Soft",arabic:"ناعم"}
     ]
   },
-
   {
     id:45,
     image:"IMG_4445.jpeg",
@@ -1006,7 +997,6 @@ const learningCards = [
       {word:"Nice",arabic:"جميل"}
     ]
   },
-
   {
     id:46,
     image:"IMG_4446.jpeg",
@@ -1017,7 +1007,6 @@ const learningCards = [
       {word:"Delicious",arabic:"لذيذ"}
     ]
   },
-
   {
     id:47,
     image:"IMG_4447.jpeg",
@@ -1028,7 +1017,6 @@ const learningCards = [
       {word:"New",arabic:"جديد"}
     ]
   },
-
   {
     id:48,
     image:"IMG_4448.jpeg",
@@ -1039,7 +1027,6 @@ const learningCards = [
       {word:"Clean",arabic:"نظيف"}
     ]
   },
-
   {
     id:49,
     image:"IMG_4449.jpeg",
@@ -1050,7 +1037,6 @@ const learningCards = [
       {word:"Cloudy",arabic:"غائمة"}
     ]
   },
-
   {
     id:50,
     image:"IMG_4450.jpeg",
@@ -1061,7 +1047,6 @@ const learningCards = [
       {word:"Heavy",arabic:"غزير"}
     ]
   },
-
   {
     id:51,
     image:"IMG_4451.jpeg",
@@ -1072,7 +1057,6 @@ const learningCards = [
       {word:"Happy",arabic:"سعيد"}
     ]
   },
-
   {
     id:52,
     image:"IMG_4452.jpeg",
@@ -1083,7 +1067,6 @@ const learningCards = [
       {word:"Mild",arabic:"معتدل"}
     ]
   },
-
   {
     id:53,
     image:"IMG_4453.jpeg",
@@ -1094,7 +1077,6 @@ const learningCards = [
       {word:"Crowded",arabic:"مزدحم"}
     ]
   },
-
   {
     id:54,
     image:"IMG_4454.jpeg",
@@ -1105,7 +1087,6 @@ const learningCards = [
       {word:"Dark",arabic:"مظلمة"}
     ]
   },
-
   {
     id:55,
     image:"IMG_4455.jpeg",
@@ -1116,7 +1097,6 @@ const learningCards = [
       {word:"Red",arabic:"حمراء"}
     ]
   },
-
   {
     id:56,
     image:"IMG_4456.jpeg",
@@ -1127,7 +1107,6 @@ const learningCards = [
       {word:"Brown",arabic:"بني"}
     ]
   },
-
   {
     id:57,
     image:"IMG_4457.jpeg",
@@ -1138,7 +1117,6 @@ const learningCards = [
       {word:"Orange",arabic:"برتقالية"}
     ]
   },
-
   {
     id:58,
     image:"IMG_4458.jpeg",
@@ -1149,7 +1127,6 @@ const learningCards = [
       {word:"Cold",arabic:"بارد"}
     ]
   },
-
   {
     id:59,
     image:"IMG_4459.jpeg",
@@ -1160,7 +1137,6 @@ const learningCards = [
       {word:"Hot",arabic:"حار"}
     ]
   },
-
   {
     id:60,
     image:"IMG_4460.jpeg",
@@ -1171,7 +1147,6 @@ const learningCards = [
       {word:"Off",arabic:"مغلق"}
     ]
   },
-
   {
     id:61,
     image:"IMG_4461.jpeg",
@@ -1195,13 +1170,28 @@ function showPage() {
 
   const card = learningCards[currentPage];
   const picture = document.getElementById("mainPicture");
+  const placeholder = document.getElementById("imagePlaceholder");
+
+  picture.onerror = function() {
+    picture.style.display = "none";
+    placeholder.style.display = "block";
+    placeholder.textContent = "الصورة غير متوفرة: " + card.image;
+  };
+
+  picture.onload = function() {
+    picture.style.display = "block";
+    placeholder.style.display = "none";
+  };
 
   if(card.image) {
-    picture.src = card.image;
+    placeholder.style.display = "none";
     picture.style.display = "block";
+    picture.src = IMAGE_FOLDER + card.image;
   } else {
     picture.removeAttribute("src");
     picture.style.display = "none";
+    placeholder.style.display = "block";
+    placeholder.textContent = "لا توجد صورة لهذه الصفحة حاليًا";
   }
 
   document.getElementById("imagePageNumber").textContent =
@@ -1285,7 +1275,7 @@ function renderSentence(card) {
   const box = document.getElementById("sentenceBox");
   box.innerHTML = "";
 
-  if(!card.sentence.trim()) {
+  if(!card.sentence || !card.sentence.trim()) {
     box.textContent = "ستضاف الجملة هنا";
     return;
   }
