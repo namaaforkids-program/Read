@@ -616,7 +616,7 @@ header {
       <div class="cover-art">📖</div>
       <h2>كتاب نماء</h2>
       <p>رحلتنا الممتعة لتعلم اللغة الإنجليزية</p>
-      <button class="cover-button">هيا نبدأ!</button>
+      <button class="cover-button" type="button">هيا نبدأ!</button>
     </div>
 
     <div class="spread">
@@ -653,10 +653,10 @@ header {
         </div>
 
         <div class="sentence-audio-buttons">
-          <button class="listen" onclick="speakSentenceEnglish()">
+          <button class="listen" type="button" onclick="speakSentenceEnglish()">
             🔊 استمع بالإنجليزية
           </button>
-          <button class="listen arabic" onclick="speakSentenceArabic()">
+          <button class="listen arabic" type="button" onclick="speakSentenceArabic()">
             🔊 استمع بالعربية
           </button>
         </div>
@@ -666,12 +666,12 @@ header {
   </div>
 
   <div class="controls">
-    <button class="nav-button" id="nextBtn" onclick="nextPage()">❮</button>
+    <button class="nav-button" id="nextBtn" type="button" onclick="nextPage()">❮</button>
     <div class="counter" id="counter">1 / 61</div>
-    <button class="nav-button" id="prevBtn" onclick="prevPage()">❯</button>
+    <button class="nav-button" id="prevBtn" type="button" onclick="prevPage()">❯</button>
   </div>
 
-  <button class="back-button" id="backButton" onclick="closeBook()">
+  <button class="back-button" id="backButton" type="button" onclick="closeBook()">
     العودة إلى الغلاف
   </button>
 
@@ -688,8 +688,6 @@ const IMAGE_FOLDER = "";
 /* بيانات صفحات الكتاب */
 
 const learningCards = [
-
-  /* الصفحات 1 إلى 24 */
 
   {
     id:1,
@@ -932,7 +930,7 @@ const learningCards = [
     ]
   },
 
-  /* الصفحات 25 إلى 31: نضيف محتواها لاحقًا */
+  /* الصفحات 25 إلى 31 */
 
   {id:25,image:"IMG_4433.jpeg",sentence:"",translation:"",words:[]},
   {id:26,image:"IMG_4434.jpeg",sentence:"",translation:"",words:[]},
@@ -942,7 +940,7 @@ const learningCards = [
   {id:30,image:"IMG_4438.jpeg",sentence:"",translation:"",words:[]},
   {id:31,image:"IMG_4439.jpeg",sentence:"",translation:"",words:[]},
 
-  /* الصفحات 32 إلى 41: نضيف محتواها لاحقًا */
+  /* الصفحات 32 إلى 41 */
 
   {id:32,image:"",sentence:"",translation:"",words:[]},
   {id:33,image:"",sentence:"",translation:"",words:[]},
@@ -1160,22 +1158,26 @@ const learningCards = [
 
 ];
 
+/* متغيرات الكتاب */
+
 let currentPage = 0;
 let bookOpened = false;
-
 
 /* عرض الصفحة */
 
 function showPage() {
 
   const card = learningCards[currentPage];
+
   const picture = document.getElementById("mainPicture");
   const placeholder = document.getElementById("imagePlaceholder");
 
   picture.onerror = function() {
     picture.style.display = "none";
     placeholder.style.display = "block";
-    placeholder.textContent = "الصورة غير متوفرة: " + card.image;
+    placeholder.textContent = card.image
+      ? "الصورة غير متوفرة: " + card.image
+      : "لا توجد صورة لهذه الصفحة حاليًا";
   };
 
   picture.onload = function() {
@@ -1186,7 +1188,13 @@ function showPage() {
   if(card.image) {
     placeholder.style.display = "none";
     picture.style.display = "block";
-    picture.src = IMAGE_FOLDER + card.image;
+
+    const imagePath = IMAGE_FOLDER + card.image;
+
+    if(picture.getAttribute("src") !== imagePath) {
+      picture.src = imagePath;
+    }
+
   } else {
     picture.removeAttribute("src");
     picture.style.display = "none";
@@ -1216,7 +1224,6 @@ function showPage() {
     card.translation || "ستضاف الترجمة العربية هنا";
 }
 
-
 /* عرض الكلمات */
 
 function renderWords(card) {
@@ -1224,7 +1231,7 @@ function renderWords(card) {
   const grid = document.getElementById("wordsGrid");
   grid.innerHTML = "";
 
-  if(card.words.length === 0) {
+  if(!card.words || card.words.length === 0) {
     grid.innerHTML =
       '<p style="font-size:13px;color:#8BA3A2">ستضاف الكلمات هنا</p>';
     return;
@@ -1247,11 +1254,13 @@ function renderWords(card) {
     buttons.className = "word-audio-buttons";
 
     const arabicButton = document.createElement("button");
+    arabicButton.type = "button";
     arabicButton.className = "audio-small";
     arabicButton.textContent = "🔊 عربي";
     arabicButton.onclick = () => speakArabic(item.arabic);
 
     const englishButton = document.createElement("button");
+    englishButton.type = "button";
     englishButton.className = "audio-small english";
     englishButton.textContent = "🔊 English";
     englishButton.onclick = () => speakEnglish(item.word);
@@ -1266,7 +1275,6 @@ function renderWords(card) {
     grid.appendChild(cardElement);
   });
 }
-
 
 /* عرض الجملة */
 
@@ -1283,6 +1291,7 @@ function renderSentence(card) {
   card.sentence.trim().split(/\s+/).forEach(word => {
 
     const button = document.createElement("button");
+    button.type = "button";
     button.className = "sentence-word";
     button.textContent = word;
     button.onclick = () => speakEnglish(word);
@@ -1291,10 +1300,11 @@ function renderSentence(card) {
   });
 }
 
-
 /* فتح الكتاب */
 
 function openBook() {
+
+  if(bookOpened) return;
 
   bookOpened = true;
 
@@ -1304,7 +1314,6 @@ function openBook() {
   showPage();
 }
 
-
 /* الصفحة التالية */
 
 function nextPage() {
@@ -1313,10 +1322,10 @@ function nextPage() {
 
   if(currentPage < learningCards.length - 1) {
     currentPage++;
+    window.speechSynthesis.cancel();
     showPage();
   }
 }
-
 
 /* الصفحة السابقة */
 
@@ -1326,10 +1335,10 @@ function prevPage() {
 
   if(currentPage > 0) {
     currentPage--;
+    window.speechSynthesis.cancel();
     showPage();
   }
 }
-
 
 /* العودة للغلاف */
 
@@ -1338,7 +1347,9 @@ function closeBook() {
   bookOpened = false;
   currentPage = 0;
 
-  window.speechSynthesis.cancel();
+  if("speechSynthesis" in window) {
+    window.speechSynthesis.cancel();
+  }
 
   document.getElementById("cover").classList.remove("open");
   document.getElementById("backButton").classList.remove("show");
@@ -1346,20 +1357,17 @@ function closeBook() {
   showPage();
 }
 
-
 /* النطق بالإنجليزية */
 
 function speakEnglish(text) {
   speak(text,"en-US");
 }
 
-
 /* النطق بالعربية */
 
 function speakArabic(text) {
   speak(text,"ar-SA");
 }
-
 
 /* تشغيل الصوت */
 
@@ -1384,7 +1392,9 @@ function speak(text,language) {
   const selectedVoice = voices.find(voice =>
     voice.lang.toLowerCase() === language.toLowerCase()
   ) || voices.find(voice =>
-    voice.lang.toLowerCase().startsWith(language.split("-")[0].toLowerCase())
+    voice.lang.toLowerCase().startsWith(
+      language.split("-")[0].toLowerCase()
+    )
   );
 
   if(selectedVoice) {
@@ -1393,7 +1403,6 @@ function speak(text,language) {
 
   window.speechSynthesis.speak(speech);
 }
-
 
 /* الاستماع للجملة الإنجليزية */
 
@@ -1406,7 +1415,6 @@ function speakSentenceEnglish() {
   }
 }
 
-
 /* الاستماع للجملة العربية */
 
 function speakSentenceArabic() {
@@ -1417,7 +1425,6 @@ function speakSentenceArabic() {
     speakArabic(card.translation);
   }
 }
-
 
 /* تحميل أول صفحة */
 
